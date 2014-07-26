@@ -5,6 +5,7 @@ class UncubedApp < Sinatra::Base
   set :method_override, true
   set :sessions => true
   set :root, "lib/app"
+  get('/styles.css'){ scss :styles }
 
   configure :development do
     register Sinatra::Reloader
@@ -20,10 +21,6 @@ class UncubedApp < Sinatra::Base
     def admin?
       session[:admin]
     end
-  end
-
-  not_found do
-    erb :error
   end
 
   get '/' do
@@ -70,5 +67,9 @@ class UncubedApp < Sinatra::Base
   get '/logout' do
     session.clear
     redirect to('/')
+  end
+
+  not_found do
+    erb :error
   end
 end
