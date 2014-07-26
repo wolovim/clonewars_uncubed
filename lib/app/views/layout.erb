@@ -1,194 +1,75 @@
 <!DOCTYPE html>
 <html lang="en-US">
 <head>
-  <link rel="profile" href="http://gmpg.org/xfn/11" />
-  <link rel="stylesheet" type="text/css" media="all" href="http://uncubed.johnwilker.com/wp-content/themes/sliding-door/style.css" />
-  <link rel="pingback" href="http://uncubed.johnwilker.com/xmlrpc.php" />
-  <link rel="alternate" type="application/rss+xml" title="Uncubed &raquo; Feed" href="http://www.uncubedspace.com/feed/" />
-  <link rel="alternate" type="application/rss+xml" title="Uncubed &raquo; Comments Feed" href="http://www.uncubedspace.com/comments/feed/" />
-  <link rel='stylesheet' id='flickr-gallery-css'  href='http://uncubed.johnwilker.com/wp-content/plugins/flickr-gallery/flickr-gallery.css?ver=1.5.2' type='text/css' media='all' />
-  <link rel='stylesheet' id='fg-jquery-ui-css'  href='http://uncubed.johnwilker.com/wp-content/plugins/flickr-gallery/tab-theme/jquery-ui-1.7.3.css?ver=1.7.3' type='text/css' media='all' />
-  <link rel='stylesheet' id='jquery-flightbox-css'  href='http://uncubed.johnwilker.com/wp-content/plugins/flickr-gallery/flightbox/jquery.flightbox.css?ver=1.5.2' type='text/css' media='all' />
-  <link rel='stylesheet' id='flick-css'  href='http://uncubed.johnwilker.com/wp-content/plugins/mailchimp//css/flick/flick.css?ver=3.8.3' type='text/css' media='all' />
-  <link rel='stylesheet' id='mailchimpSF_main_css-css'  href='http://www.uncubedspace.com/?mcsf_action=main_css&#038;ver=3.8.3' type='text/css' media='all' />
-  <!--[if IE]>
-  <link rel='stylesheet' id='mailchimpSF_ie_css-css'  href='http://uncubed.johnwilker.com/wp-content/plugins/mailchimp/css/ie.css?ver=3.8.3' type='text/css' media='all' />
-  <![endif]-->
-  <script type='text/javascript' src='http://uncubed.johnwilker.com/wp-includes/js/jquery/jquery.js?ver=1.10.2'></script>
-  <script type='text/javascript' src='http://uncubed.johnwilker.com/wp-includes/js/jquery/jquery-migrate.min.js?ver=1.2.1'></script>
-  <script type='text/javascript' src='http://uncubed.johnwilker.com/wp-includes/js/jquery/ui/jquery.ui.core.min.js?ver=1.10.3'></script>
-  <script type='text/javascript' src='http://uncubed.johnwilker.com/wp-content/plugins/flickr-gallery/flightbox/jquery.flightbox.js?ver=1.5.2'></script>
-  <script type='text/javascript' src='http://uncubed.johnwilker.com/wp-content/plugins/mailchimp/js/scrollTo.js?ver=1.4.1'></script>
-  <script type='text/javascript' src='http://uncubed.johnwilker.com/wp-includes/js/jquery/jquery.form.min.js?ver=3.37.0'></script>
-  <script type='text/javascript'>
-  /* <![CDATA[ */
-  var mailchimpSF = {"ajax_url":"http:\/\/www.uncubedspace.com\/"};
-  /* ]]> */
-  </script>
-  <script type='text/javascript' src='http://uncubed.johnwilker.com/wp-content/plugins/mailchimp/js/mailchimp.js?ver=1.4.1'></script>
-  <script type='text/javascript' src='http://uncubed.johnwilker.com/wp-content/plugins/mailchimp//js/datepicker.js?ver=3.8.3'></script>
-  <link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://uncubed.johnwilker.com/xmlrpc.php?rsd" />
-  <link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://uncubed.johnwilker.com/wp-includes/wlwmanifest.xml" /> 
-  <link rel='prev' title='Pricing' href='http://www.uncubedspace.com/pricing/' />
-  <link rel='next' title='Gallery' href='http://www.uncubedspace.com/gallery/' />
-  <meta name="generator" content="WordPress 3.8.3" />
-  <link rel='canonical' href='http://www.uncubedspace.com/' />
-  <link rel='shortlink' href='http://www.uncubedspace.com/?p=11' />
-
-        <link rel="stylesheet" href="http://uncubed.johnwilker.com/wp-content/plugins/flexi-quote-rotator/styles/wide-rounded.css" type="text/css" media="screen" />  <script type='text/javascript'>
-          quoteRotator = {
-            i: 1,
-            quotes: ["<span id='quote'>Coffee shops are nice, but not a long term solution, and working from home was making me talk to my dogs too much</span> <span id='quoteauthor'>John Wilker</span>",
-  "<span id='quote'>We spent the last 8 weeks at Uncubed and we loved it. It provided a great transition for us after our experience at TechStars. Our FullContact team of awesome engineers (oh btw, we’re hiring) got the chance to share problems with engineers from other tech companies. This bettered everyone involved and often brought fresh insights to challenges we were working on.<br /><br /><a href=\'http://fullcontact.com/2011/11/coworking-rocks-and-heres-why/\'>link</a></span> <span id='quoteauthor'>Full Contact</span>",
-
-            ],
-            numQuotes: 2,
-            fadeDuration: 5,
-            fadeoutDuration: 5,
-            delay: 15,
-            quotesInit: function(){
-              if (this.numQuotes < 1){
-                document.getElementById('quoterotator').innerHTML="No Quotes Found";
-              } else {
-                this.quoteRotate();
-                setInterval('quoteRotator.quoteRotate()', (this.fadeDuration + this.fadeoutDuration + this.delay) * 1000);
-              }
-            },
-            quoteRotate: function(){
-              jQuery('#quoterotator').hide().html(this.quotes[this.i - 1]).fadeIn(this.fadeDuration * 1000).css('filter','').delay(this.delay * 1000).fadeOut(this.fadeoutDuration * 1000);
-              this.i = this.i % (this.numQuotes) + 1;
-            }
-    
-          }
-        </script> <script type="text/javascript">
-      jQuery(function($) {
-        $('.date-pick').each(function() {
-          var format = $(this).data('format') || 'mm/dd/yyyy';
-          format = format.replace(/yyyy/i, 'yy');
-          $(this).datepicker({
-            autoFocusNextInput: true,
-            constrainInput: false,
-            changeMonth: true,
-            changeYear: true,
-            beforeShow: function(input, inst) { $('#ui-datepicker-div').addClass('show'); },
-            dateFormat: format.toLowerCase(),
-          });
-        });
-        d = new Date();
-        $('.birthdate-pick').each(function() {
-          var format = $(this).data('format') || 'mm/dd';
-          format = format.replace(/yyyy/i, 'yy');
-          $(this).datepicker({
-            autoFocusNextInput: true,
-            constrainInput: false,
-            changeMonth: true,
-            changeYear: false,
-            minDate: new Date(d.getFullYear(), 1-1, 1),
-            maxDate: new Date(d.getFullYear(), 12-1, 31),
-            beforeShow: function(input, inst) { $('#ui-datepicker-div').removeClass('show'); },
-            dateFormat: format.toLowerCase(),
-          });
-
-        });
-
-      });
-    </script>
-          <script type="text/javascript">
-          var get_sizes = null;
-                </script>
-      <style type="text/css" id="custom-background-css">
-  body.custom-background { background-color: #000000; }
-  </style>
-
-
-
-
-  <link rel="stylesheet" type="text/css" media="screen" href="http://uncubed.johnwilker.com/wp-content/themes/sliding-door/light.css">
-  <link rel="stylesheet" type="text/css" media="screen" href="http://uncubed.johnwilker.com/wp-content/themes/sliding-door/imagemenu/imageMenu.css">
-  <script type="text/javascript" src="http://uncubed.johnwilker.com/wp-content/themes/sliding-door/imagemenu/mootools.js"></script>
-  <script type="text/javascript" src="http://uncubed.johnwilker.com/wp-content/themes/sliding-door/imagemenu/imageMenu.js"></script>
+  <%= erb :layout_head %>
 </head>
-
-  <body class="home page page-id-11 page-template-default custom-background">
+<body class="home page page-id-11 page-template-default custom-background">
   <div id="wrapper" class="hfeed">
-  <div id="header">
-    <div id="masthead">
-      <div id="branding" role="banner">
-        <h1 id="site-title">
-          <span>
-            <a href="/" title="Uncubed" rel="home">Uncubed</a>
-          </span>
-        </h1>
-        <div id="site-description">Cowork Different, Denver Coworking, Meetup, Collaborative,  Work Space</div>
+    <div id="header">
+      <div id="masthead">
+        <div id="branding" role="banner">
+          <h1 id="site-title">
+            <span>
+              <a href="/" title="Uncubed" rel="home">Uncubed</a>
+            </span>
+          </h1>
+          <div id="site-description">Cowork Different, Denver Coworking, Meetup, Collaborative,  Work Space</div>
+          <div id="imageMenu">
+            <!-- THESE ARE THE LINKS YOU GO TO WHEN YOU CLICK ON A SLIDING DOOR IMAGE-->
+            <ul id="menu-main" class=""><li id="menu-item-17" class="bk0" ><a href="/" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/aboutusheader1.png') repeat scroll 0%;">Coworking for the Entrepreneurial Kind</a></li>
+              <li id="menu-item-21" class="bk1" ><a href="/pricing" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/pricingheader1.png') repeat scroll 0%;">Pricing</a></li>
+              <li id="menu-item-29" class="bk2" ><a href="/gallery" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/galleryheader.png') repeat scroll 0%;">Gallery</a></li>
+              <li id="menu-item-46" class="bk3" ><a href="/members" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/membersheader.png') repeat scroll 0%;">Members</a></li>
+              <li id="menu-item-54" class="bk4" ><a href="/contact-us" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/Contactusheader.png') repeat scroll 0%;">Contact Us</a></li>
+              <li id="menu-item-96" class="bk5" ><a href="/social" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/socialheader.png') repeat scroll 0%;">Social</a></li>
+              <li id="menu-item-213" class="bk6" ><a href="/nearby" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/nearbyheader.png') repeat scroll 0%;">Around Uncubed</a></li>
+            </ul>
+          </div>
+          <!-- MENU MANIPULATION JAVASCRIPT-->
+          <script type="text/javascript">
+            window.addEvent('domready', function(){
+              var myMenu = new ImageMenu($$('#imageMenu a'),{openWidth:310, border:2, onOpen:function(e,i){location=(e);}});
+            });
+          </script>
+        </div><!-- #branding -->
+      </div><!-- #masthead -->
+    </div><!-- #header -->
+<div id="main">
+  <div id="sidebar1" class="widget-area" role="complementary">
+    <ul class="xoxo">
+      <li id="search" class="widget-container widget_search">
+        <form role="search" method="get" id="searchform" class="searchform" action="http://www.uncubedspace.com/">
+          <div>
+            <label class="screen-reader-text" for="s">Search for:</label>
+            <input type="text" value="" name="s" id="s" />
+            <input type="submit" id="searchsubmit" value="Search" />
+          </div>
+        </form>
+      </li>
+      <li id="archives" class="widget-container"> <h3 class="widget-title">Archives</h3>
+        <ul>
+          <li><a href='http://www.uncubedspace.com/2011/08/'>August 2011</a></li>
+        </ul>
+      </li>
+        <li id="meta" class="widget-container">
+          <h3 class="widget-title">Meta</h3>
+          <ul>
+            <li><a href="http://uncubed.johnwilker.com/wp-login.php">Log in</a></li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- #primary .widget-area -->
 
-        <div id="imageMenu">
-    
-        <!-- THESE ARE THE LINKS YOU GO TO WHEN YOU CLICK ON A SLIDING DOOR IMAGE-->
-        
-        <ul id="menu-main" class=""><li id="menu-item-17" class="bk0" ><a href="/" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/aboutusheader1.png') repeat scroll 0%;">Coworking for the Entrepreneurial Kind</a></li>
-<li id="menu-item-21" class="bk1" ><a href="/pricing" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/pricingheader1.png') repeat scroll 0%;">Pricing</a></li>
-<li id="menu-item-29" class="bk2" ><a href="/gallery" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/galleryheader.png') repeat scroll 0%;">Gallery</a></li>
-<li id="menu-item-46" class="bk3" ><a href="/members" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/membersheader.png') repeat scroll 0%;">Members</a></li>
-<li id="menu-item-54" class="bk4" ><a href="/contact-us" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/Contactusheader.png') repeat scroll 0%;">Contact Us</a></li>
-<li id="menu-item-96" class="bk5" ><a href="/social" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/socialheader.png') repeat scroll 0%;">Social</a></li>
-<li id="menu-item-213" class="bk6" ><a href="/nearby" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/nearbyheader.png') repeat scroll 0%;">Around Uncubed</a></li>
-</ul>       
-      </div>
-      
-        <script type="text/javascript">
-      
-      window.addEvent('domready', function(){
-        var myMenu = new ImageMenu($$('#imageMenu a'),{openWidth:310, border:2, onOpen:function(e,i){location=(e);}});
-      });
-    </script>  
-  
-  
-        
-
-
-        
-      </div><!-- #branding -->
-<!-- 
-      <div id="access" role="navigation">
-                <div class="skip-link screen-reader-text"><a href="#content" title="Skip to content">Skip to content</a></div>
-                <div class="menu"><ul><li class="current_page_item"><a href="http://www.uncubedspace.com/">Home</a></li><li class="page_item page-item-85"><a href="http://www.uncubedspace.com/uncubed/">Around Uncubed</a></li><li class="page_item page-item-50"><a href="http://www.uncubedspace.com/contact-us/">Contact Us</a></li><li class="page_item page-item-26"><a href="http://www.uncubedspace.com/gallery/">Gallery</a></li><li class="page_item page-item-43"><a href="http://www.uncubedspace.com/members/">Members</a></li><li class="page_item page-item-2"><a href="http://www.uncubedspace.com/pricing/">Pricing</a></li><li class="page_item page-item-93"><a href="http://www.uncubedspace.com/social/">Social</a></li></ul></div>
-      </div><!-- #access -->
-    </div><!-- #masthead -->
-  </div><!-- #header -->
-
-  <div id="main">
-
-<div id="sidebar1" class="widget-area" role="complementary"> <ul class="xoxo">
-
-
-<li id="search" class="widget-container widget_search"> <form role="search" method="get" id="searchform" class="searchform" action="http://www.uncubedspace.com/">
-        <div>
-          <label class="screen-reader-text" for="s">Search for:</label>
-          <input type="text" value="" name="s" id="s" />
-          <input type="submit" id="searchsubmit" value="Search" />
-        </div>
-      </form> </li>
-
-<li id="archives" class="widget-container"> <h3 class="widget-title">Archives</h3>
-
-<ul>  <li><a href='http://www.uncubedspace.com/2011/08/'>August 2011</a></li>
- </ul> </li>
-
-<li id="meta" class="widget-container"> <h3 class="widget-title">Meta</h3> <ul>  <li><a href="http://uncubed.johnwilker.com/wp-login.php">Log in</a></li>  </ul> </li>
-
- </ul> </div><!-- #primary .widget-area -->
-
-
-
-<div id="sidebar2" class="widget-area" role="complementary"> <ul class="xoxo"> 
-
-<li class="widget-container"> <h3 class="widget-title">Categories</h3> <ul>   <li class="cat-item cat-item-1"><a href="http://www.uncubedspace.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
-</li>
-
-</ul> </li>
-
-
- </ul> </div><!-- #secondary .widget-area -->
+    <div id="sidebar2" class="widget-area" role="complementary">
+      <ul class="xoxo">
+        <li class="widget-container"> <h3 class="widget-title">Categories</h3>
+          <ul>
+            <li class="cat-item cat-item-1"><a href="http://www.uncubedspace.com/category/uncategorized/" title="View all posts filed under Uncategorized">Uncategorized</a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </div><!-- #secondary .widget-area -->
 
     <%= yield %>
 
