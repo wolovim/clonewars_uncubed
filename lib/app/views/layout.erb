@@ -38,7 +38,7 @@
   <div id="sidebar1" class="widget-area" role="complementary">
     <ul class="xoxo">
       <li id="search" class="widget-container widget_search">
-        <form role="search" method="get" id="searchform" class="searchform" action="http://www.uncubedspace.com/">
+        <form role="search" method="get" id="searchform" class="searchform" action="/">
           <div>
             <label class="screen-reader-text" for="s">Search for:</label>
             <input type="text" value="" name="s" id="s" />
@@ -54,7 +54,11 @@
         <li id="meta" class="widget-container">
           <h3 class="widget-title">Meta</h3>
           <ul>
-            <li><a href="http://uncubed.johnwilker.com/wp-login.php">Log in</a></li>
+            <% if !admin? %>
+              <li><a href="/login">Log in</a></li>
+            <% else%>
+              <li><a href="/logout">Log out</a></li>
+            <% end %>
           </ul>
         </li>
       </ul>

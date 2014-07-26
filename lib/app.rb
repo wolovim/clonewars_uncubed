@@ -3,10 +3,23 @@ Bundler.require
 
 class UncubedApp < Sinatra::Base
   set :method_override, true
+  set :sessions => true
   set :root, "lib/app"
 
   configure :development do
     register Sinatra::Reloader
+  end
+
+  configure do
+    enable :sessions
+    set :username, 'admin'
+    set :password, 'omg'
+  end
+
+  helpers do
+    def admin?
+      session[:admin]
+    end
   end
 
   not_found do
@@ -15,6 +28,10 @@ class UncubedApp < Sinatra::Base
 
   get '/' do
     erb :index
+  end
+
+  get '/login' do
+    erb :login
   end
 
   get '/pricing' do
@@ -39,5 +56,19 @@ class UncubedApp < Sinatra::Base
 
   get '/nearby' do
     erb :nearby
+  end
+
+  post '/login' do
+    if params[:username] == settings.username && params[:password] == settings.password
+      session[:admin] = true
+      redirect to('/')
+    else
+      erb :login
+    end
+  end
+
+  get '/logout' do
+    session.clear
+    redirect to('/')
   end
 end
