@@ -68,6 +68,16 @@ class UncubedApp < Sinatra::Base
     end
   end
 
+  post '/members' do
+    #add to the database
+    # binding.pry
+    Database.membership.insert(:first_name => params[:member][:first_name],
+                   :last_name => params[:member][:last_name],
+                   :email_address => params[:member][:email_address]
+                  )
+    redirect to('/members')
+  end
+
   get '/logout' do
     session.clear
     redirect to('/')
