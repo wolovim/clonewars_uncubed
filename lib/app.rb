@@ -1,5 +1,7 @@
 require "bundler"
 Bundler.require
+require 'sequel'
+require_relative 'models'
 
 class UncubedApp < Sinatra::Base
   set :method_override, true

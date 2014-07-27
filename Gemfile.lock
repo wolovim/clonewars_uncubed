@@ -42,7 +42,7 @@ PLATFORMS
 DEPENDENCIES
   minitest
   pry
-  sequel
+  sequel (~> 4.12.0)
   simplecov
   sinatra
   sinatra-contrib
