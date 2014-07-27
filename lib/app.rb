@@ -44,7 +44,8 @@ class UncubedApp < Sinatra::Base
 
   get '/members' do
     members = Member.all
-    erb :members, locals: {members: members}
+    member_types = MemberType.all
+    erb :members, locals: {members: members, member_types: member_types}
   end
 
   get '/contact-us' do
@@ -74,6 +75,7 @@ class UncubedApp < Sinatra::Base
                    :email_address => params[:member][:email_address],
                    :phone_number => params[:member][:phone_number],
                    :company => params[:member][:company],
+                   :membership_type_id => params[:member][:membership_type_id],
                    :joined_at => Time.now
                   )
     redirect to('/members')

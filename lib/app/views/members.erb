@@ -31,6 +31,7 @@
         <% members.each do |member| %>
           <tr>
             <td><%= "#{member.company}" %></td>
+            
             <td><%= "#{member.membership_type_id}" %></td>
             <td><%= "#{member.first_name}" %></td>
             <td><%= "#{member.last_name}" %></td>
@@ -55,7 +56,7 @@
   <form action='/members' method='POST' style='float: left;'>
     <h2>[Input a new member]</h2><br/>
     <strong>Company: </strong><br><input type='text' name='member[company]'/><br/>
-    <strong>Member Type: </strong><br><input type='text' name='member[member_type]'/><br/>
+    <strong>Member Type: </strong><br><input type='text' name='member[membership_type_id]'/><br/>
     <strong>First Name:</strong><br><input type='text' name='member[first_name]'/><br/>
     <strong>Last Name: </strong><br><input type='text' name='member[last_name]'/><br/>
     <strong>Email: </strong><br><input type='text' name='member[email_address]'/><br/>
