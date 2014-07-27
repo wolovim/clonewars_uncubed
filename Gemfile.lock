@@ -16,6 +16,7 @@ GEM
       rack
     rack-test (0.6.2)
       rack (>= 1.0)
+    sequel (4.12.0)
     simplecov (0.9.0)
       docile (~> 1.1.0)
       multi_json
@@ -33,6 +34,7 @@ GEM
       sinatra (~> 1.4.0)
       tilt (~> 1.3)
     slop (3.6.0)
+    sqlite3 (1.3.9)
     tilt (1.4.1)
 
 PLATFORMS
@@ -41,6 +43,8 @@ PLATFORMS
 DEPENDENCIES
   minitest
   pry
+  sequel (~> 4.12.0)
   simplecov
   sinatra
   sinatra-contrib
+  sqlite3
