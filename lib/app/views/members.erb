@@ -14,6 +14,7 @@
             td {
               padding: 3px;
               border: 1px solid;
+              text-align: center;
             }
           </style>
           <th>Company</th>
@@ -23,6 +24,9 @@
           <th>Email</th>
           <!-- <th>Phone</th> -->
           <th>Join Date</th>
+          <% if admin? %>
+            <th>Remove?</th>
+          <% end %>
         </tr>
         <% members.each do |member| %>
           <tr>
@@ -33,6 +37,14 @@
             <td><%= "#{member.email_address}" %></td>
             <!-- <td><%= "#{member.phone_number}" %></td> -->
             <td><%= "#{member.joined_at.to_date if member.joined_at}" %></td>
+            <% if admin? %>
+              <td>
+                <form action='/<%= member.id %>' method='POST' style="display: inline">
+                  <input type="hidden" name="_method" value="DELETE">
+                  <input type='submit' value="X"/>
+                </form>
+              </td>
+            <% end %>
           </tr>
         <% end %>
       </tbody>
