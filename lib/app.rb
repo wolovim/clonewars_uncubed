@@ -73,7 +73,10 @@ class UncubedApp < Sinatra::Base
     # binding.pry
     Database.membership.insert(:first_name => params[:member][:first_name],
                    :last_name => params[:member][:last_name],
-                   :email_address => params[:member][:email_address]
+                   :email_address => params[:member][:email_address],
+                   :phone_number => params[:member][:phone_number],
+                   :company => params[:member][:company],
+                   :joined_at => Time.now
                   )
     redirect to('/members')
   end
