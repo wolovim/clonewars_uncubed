@@ -47,7 +47,8 @@ class UncubedApp < Sinatra::Base
 
   get '/members' do
     members = Member.all
-    erb :members, locals: {members: members}
+    member_types = MemberType.all
+    erb :members, locals: {members: members, member_types: member_types}
   end
 
   get '/contact-us' do
@@ -72,11 +73,13 @@ class UncubedApp < Sinatra::Base
   end
 
   post '/members' do
-    #add to the database
-    # binding.pry
     Database.membership.insert(:first_name => params[:member][:first_name],
                    :last_name => params[:member][:last_name],
-                   :email_address => params[:member][:email_address]
+                   :email_address => params[:member][:email_address],
+                   :phone_number => params[:member][:phone_number],
+                   :company => params[:member][:company],
+                   :membership_type_id => params[:member][:membership_type_id],
+                   :joined_at => Time.now
                   )
     redirect to('/members')
   end
@@ -86,9 +89,16 @@ class UncubedApp < Sinatra::Base
     redirect to('/')
   end
 
+
   post '/contact' do
     Email.new(params)
     redirect '/contact-us'
+  end
+
+  delete '/:id' do |id|
+    #find by id, delete
+    Database.membership.where(:id => id).delete
+    redirect to('/members')
   end
 
   not_found do
