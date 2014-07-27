@@ -4,7 +4,7 @@ require 'sequel'
 Sequel::Model.plugin(:schema)
 DB = Sequel.sqlite('database.db')
 
-unless DB.table_exists(:members)
+unless DB.table_exists? (:members)
   DB.create_table :members do
     primary_key :id
     integer :membership_type_id

@@ -1,6 +1,7 @@
 require "bundler"
 Bundler.require
 require 'sequel'
+require 'sqlite3'
 require_relative 'models'
 
 class UncubedApp < Sinatra::Base
@@ -42,7 +43,8 @@ class UncubedApp < Sinatra::Base
   end
 
   get '/members' do
-    erb :members
+    members = Member.all
+    erb :members, locals: {members: members}
   end
 
   get '/contact-us' do

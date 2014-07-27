@@ -1,1 +1,8 @@
 <h1>Members</h1>
+<% if members.empty? %>
+  <p>There are no members registered yet.</p>
+<% else %>
+  <% members.each do |member| %>
+    <p><%= "#{member.first_name} #{member.last_name}" %></p>
+  <% end %>
+<% end %>
