@@ -50,7 +50,7 @@ class UncubedApp < Sinatra::Base
     members = Member.all
     member_types = MemberType.all
     members_with_types = Database.members_with_types
-    erb :members, locals: {members: members, member_types: member_types, members_with_types: members_with_types}
+    erb :members, locals: {members: members, member_types: member_types, members_with_types: members_with_types.to_a}
   end
 
   get '/contact-us' do

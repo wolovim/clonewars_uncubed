@@ -29,12 +29,12 @@
         </tr>
         <% members_with_types.each do |member| %>
           <tr>
-            <td><%= "#{member.company}" %></td>
-            <td><%= "#{member.name}" %></td>
-            <td><%= "#{member.first_name}" %></td>
-            <td><%= "#{member.last_name}" %></td>
-            <td><%= "#{member.email_address}" %></td>
-            <td><%= "#{member.joined_at.to_date if member.joined_at}" %></td>
+            <td><%= member[:company] %></td>
+            <td><%= member[:name] %></td>
+            <td><%= member[:first_name] %></td>
+            <td><%= member[:last_name] %></td>
+            <td><%= member[:email_address] %></td>
+            <td><%= member[:joined_at].to_date if member[:joined_at] %></td>
             <% if admin? %>
               <td>
                 <form action='/<%= member.id %>' method='POST' style="display: inline">
