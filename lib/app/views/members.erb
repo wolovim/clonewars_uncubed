@@ -3,10 +3,20 @@
 <% if members.empty? %>
   <p>There are no members registered yet.</p>
 <% else %>
-    <table>
+    <table style="width: 60%; border: 1px solid;">
       <tbody>
         <tr style="border-bottom: 2px solid black; background-color: #ddd;">
-          <th style="maring-right: 5px;">Company</th>
+          <style type="text/css">
+            th {
+              padding: 3px;
+              border: 1px solid;
+            }
+            td {
+              padding: 3px;
+              border: 1px solid;
+            }
+          </style>
+          <th>Company</th>
           <th>Membership</th>
           <th>First Name</th>
           <th>Last Name</th>
@@ -22,7 +32,7 @@
             <td><%= "#{member.last_name}" %></td>
             <td><%= "#{member.email_address}" %></td>
             <!-- <td><%= "#{member.phone_number}" %></td> -->
-            <td><%= "#{member.joined_at}" %></td>
+            <td><%= "#{member.joined_at.to_date if member.joined_at}" %></td>
           </tr>
         <% end %>
       </tbody>
