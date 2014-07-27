@@ -37,7 +37,7 @@
             <td><%= member[:joined_at].to_date if member[:joined_at] %></td>
             <% if admin? %>
               <td>
-                <form action='/<%= member.id %>' method='POST' style="display: inline">
+                <form action='/<%= member[:id] %>' method='POST' style="display: inline">
                   <input type="hidden" name="_method" value="DELETE">
                   <input type='submit' value="X"/>
                 </form>
