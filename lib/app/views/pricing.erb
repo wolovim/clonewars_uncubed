@@ -81,25 +81,41 @@
         <% end %>
       </select>
       <input type='submit'/>
-    </form>
-
-
+    </form><br/><br/>
 
   </div>
+</div><!-- .entry-content -->
+</div><!-- #post-## -->
 
-                                  </div><!-- .entry-content -->
-        </div><!-- #post-## -->
-
-
-      <div id="comments">
-
-
+<div id="comments">
   <p class="nocomments">Comments are closed.</p>
-
-
-
 </div><!-- #comments -->
 
+<table style="width: 60%; border: 1px solid;">
+  <tbody>
+    <tr style="border-bottom: 2px solid black; background-color: #ddd;">
+      <th>ID</th>
+      <th>Name</th>
+      <th>Total Seats</th>
+    </tr>
+    <% member_types.each do |type| %>
+      <tr>
+        <td><%= type.id %></td>
+        <td><%= type.name %></td>
+        <td><%= type.total_seats %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<% if admin? %>
+  <form action='/pricing' method='POST' style='float: left;'>
+    <h2>[Add a new membership type]</h2><br/>
+    <strong>Name: </strong><br><input type='text' name='types[name]'/><br/>
+    <strong>Total Seats: </strong><br><input type='text' name='types[total_seats]'/><br/>
+    <input type='submit' value='Add Option'/>
+  </form>
+<% end %>
 
       </div><!-- #content -->
     </div><!-- #container -->

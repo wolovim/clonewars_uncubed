@@ -33,6 +33,10 @@ class Database
   def self.membership_types
     DB[:member_types]
   end
+
+  def self.members_with_types
+    DB[:members].join(:member_types, :id => :membership_type_id)
+  end
 end
 
 class Member < Sequel::Model(:members)

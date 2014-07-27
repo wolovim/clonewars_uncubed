@@ -35,7 +35,8 @@ class UncubedApp < Sinatra::Base
   end
 
   get '/pricing' do
-    erb :pricing
+    member_types = MemberType.all
+    erb :pricing, locals: {member_types: member_types}
   end
 
   get '/gallery' do
@@ -45,7 +46,8 @@ class UncubedApp < Sinatra::Base
   get '/members' do
     members = Member.all
     member_types = MemberType.all
-    erb :members, locals: {members: members, member_types: member_types}
+    members_with_types = Database.members_with_types
+    erb :members, locals: {members: members, member_types: member_types, members_with_types: members_with_types}
   end
 
   get '/contact-us' do
@@ -67,6 +69,13 @@ class UncubedApp < Sinatra::Base
     else
       erb :login
     end
+  end
+
+  post '/pricing' do
+    Database.membership_types.insert(:name => params[:types][:name],
+                                     :total_seats => params[:types][:total_seats]
+                                    )
+    redirect to('/pricing')
   end
 
   post '/members' do
@@ -110,7 +119,6 @@ class UncubedApp < Sinatra::Base
   get('/success'){"Thanks for your email. We will be in touch."}
 
   delete '/:id' do |id|
-    #find by id, delete
     Database.membership.where(:id => id).delete
     redirect to('/members')
   end

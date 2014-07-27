@@ -22,21 +22,18 @@
           <th>First Name</th>
           <th>Last Name</th>
           <th>Email</th>
-          <!-- <th>Phone</th> -->
           <th>Join Date</th>
           <% if admin? %>
             <th>Remove?</th>
           <% end %>
         </tr>
-        <% members.each do |member| %>
+        <% members_with_types.each do |member| %>
           <tr>
             <td><%= "#{member.company}" %></td>
-            
-            <td><%= "#{member.membership_type_id}" %></td>
+            <td><%= "#{member.name}" %></td>
             <td><%= "#{member.first_name}" %></td>
             <td><%= "#{member.last_name}" %></td>
             <td><%= "#{member.email_address}" %></td>
-            <!-- <td><%= "#{member.phone_number}" %></td> -->
             <td><%= "#{member.joined_at.to_date if member.joined_at}" %></td>
             <% if admin? %>
               <td>
