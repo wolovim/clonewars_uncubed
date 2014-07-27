@@ -27,21 +27,23 @@
           </a>
         </div>
 
+
+
         <h2><b>Contact us by email</b></h2>
-        <form action="/contact" method="post">
-          <label for="name">Your Name:</label>
-           <input type="text" name="name">
-          <label for="email">Your email address:</label>
-            <input type="text" name="email">
-          <label for="to">Your message:</label>
-            <textarea name="message" rows="16" cols="28">
-          <input type="submit" value="Send">
-        </form>
+          <form action='/contact' method='POST'>
+            <input type="text" name="firstname" placeholder="firstname"/>
+            <input type="text" name="lastname" placeholder="lastname"/>
+            <input type="email" name="email" placeholder="Your email"/>
+            <br/>
+            <input type="text" name="subject" size="72" placeholder="subject"><br/>
+            <textarea name="message" rows="10" cols="52"></textarea><br/>
+            <input type="submit" value="Submit"/>
+          </form>
 
 
 
 
-
+<!-- 
 
           <div id="contactform">
             <p>
@@ -56,7 +58,7 @@
                 <input type="submit" value="Send us an Email" />
               </form>
             </p>
-          </div>
+          </div> -->
 
             <p>1507 Blake St. Denver CO 80202</p>
             <p>

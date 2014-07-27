@@ -1,8 +1,11 @@
-require "bundler"
+require 'bundler'
 Bundler.require
 require 'sequel'
 require 'sqlite3'
 require_relative 'models'
+require 'pony'
+require 'mail'
+require 'contact'
 
 class UncubedApp < Sinatra::Base
   set :method_override, true
@@ -95,28 +98,11 @@ class UncubedApp < Sinatra::Base
     redirect to('/')
   end
 
-  post '/contact_us' do
-    require 'pony'
-      Pony.mail(
-        :from => params[:name] + "<" + params[:email] + ">",
-        :to => 'clonewars.uncubed@gmail.com',
-        :subject => params[:name] + " has contacted you",
-        :body => params[:message],
-        :port => '587',
-        :via => :smtp,
-        :via_options => {
-          :address              => 'smtp.gmail.com',
-          :port                 => '587',
-          :enable_starttls_auto => true,
-          :user_name            => 'daz',
-          :password             => 'p@55w0rd',
-          :authentication       => :plain,
-          :domain               => 'localhost.localdomain'
-        })
-      redirect '/success'
-  end
 
-  get('/success'){"Thanks for your email. We will be in touch."}
+  post '/contact' do
+    Email.new(params)
+    redirect '/contact-us'
+  end
 
   delete '/:id' do |id|
     Database.membership.where(:id => id).delete

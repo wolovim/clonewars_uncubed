@@ -8,4 +8,4 @@ gem 'pry'
 gem 'sass'
 gem 'minitest', require: false, group: :test
 gem 'simplecov', require: false, group: :test
-gem 'pony', '~>1.10'
+gem 'pony', '~> 1.10'
