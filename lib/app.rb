@@ -39,6 +39,7 @@ class UncubedApp < Sinatra::Base
 
   get '/pricing' do
     member_types = MemberType.all
+    # reservations = Reservation.all
     erb :pricing, locals: {member_types: member_types}
   end
 
@@ -78,6 +79,21 @@ class UncubedApp < Sinatra::Base
     Database.membership_types.insert(:name => params[:types][:name],
                                      :total_seats => params[:types][:total_seats]
                                     )
+    redirect to('/pricing')
+  end
+
+  post '/reservation' do
+    Database.reservations.insert(
+                                 :date   => params[:reservations][:date],
+                                 :hour   => params[:reservations][:hour],
+                                 :minute => params[:reservations][:minute],
+                                 :am_pm  => params[:reservations][:am_pm],
+                                 :party_size => params[:reservations][:party_size]
+                                )
+
+
+    # reservations = Reservation.all
+    # erb :pricing, locals: {reservations: reservations}
     redirect to('/pricing')
   end
 

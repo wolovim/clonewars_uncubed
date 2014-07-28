@@ -49,40 +49,37 @@
         <li><strong>SOLD OUT</strong> (contact us to be on waiting list)</li>
       </ul>
   </div>
-  <!--we need to store this to a DB somehow...prob SQL :)-->
-  <div id='reserveRoom'
-   <h3>Reserve a confrence room</h3>
-   <form action='/' method='POST'>
-      <p>Date: <input type='text' class='date-pick'></p>
-      <p>Time:</p>
-      <select name='hour'>
-        <%hours = Array(1..12)%>
-        <%hours.each do |hour|%>
-          <option value='hour'><%=hour%></option>
-        <% end %>
-      </select>
-        <!-- You can book a room in one hour blocks-->
-        <!-- minutes field only is in 15 minute increments startinga at 00 -->
-      <select name='minute'>
-        <%minutes = [00, 15, 30, 45]%>
-        <%minutes.each do |minute|%>
-          <option value='minute'><%=minute%></option>
-        <% end %>
-      </select>
-      <select name='ampm'
-        <option value='am'>am</option>
-        <option value='pm'>pm</option>
-      </select>
-      <p>Party Size:</p>
-      <select name='party_size'>
-        <%size = Array(1..20)%>
-        <%size.each do |number|%>
-          <option value='size'><%=number%></option>
-        <% end %>
-      </select>
-      <input type='submit'/>
-    </form><br/><br/>
 
+  <div id='reserveRoom'
+     <h3>Reserve a confrence room</h3>
+     <form action='/reservation' method='POST'>
+        <!-- <p>Date: <input type='text' name='reservations[date]' class='date-pick'></p> -->
+        <p>Time:</p>
+        <select name='reservations[hour]'>
+          <%hours = Array(1..12)%>
+          <%hours.each do |hour|%>
+            <option name='reservations[hour]'><%=hour%></option>
+          <% end %>
+        </select>
+        <select name='reservations[minute]'>
+          <%minutes = [00, 15, 30, 45]%>
+          <%minutes.each do |minute|%>
+            <option name='reservations[minute]'><%=minute%></option>
+          <% end %>
+        </select>
+        <select name='reservations[am_pm]'
+          <option name='reservations[am_pm]'>am</option>
+          <option name='reservations[am_pm]'>pm</option>
+        </select>
+        <p>Party Size:</p>
+        <select name='reservations[party_size]'>
+          <%size = Array(1..20)%>
+          <%size.each do |number|%>
+            <option name='reservations[party_size]'><%=number%></option>
+          <% end %>
+        </select>
+        <input type='submit'/>
+      </form></br></br>
   </div>
 </div><!-- .entry-content -->
 </div><!-- #post-## -->
@@ -115,6 +112,14 @@
     <strong>Total Seats: </strong><br><input type='text' name='types[total_seats]'/><br/>
     <input type='submit' value='Add Option'/>
   </form>
+
+  <!-- <% reservations.each do |reservation| %>
+    <ul>
+      <li><%= "#{reservation.date}" %>
+      <li><%= "#{reservation.hour}:#{reservation.minute} #{reservations.am_pm}" %>
+      <li><%= "#{reservation.party_size}" %>
+    </ul>
+  <% end %> -->
 <% end %>
 
       </div><!-- #content -->
