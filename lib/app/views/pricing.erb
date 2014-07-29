@@ -127,14 +127,18 @@
     </form>
     <div id='currentReservations' style='position:right;float:right;'>
       <h2>Current reservations</h2>
-    <% reservations.each do |reservation| %>
-      <ul>
-        <li>Reservation Date: <%= "#{reservation.date}" %>
-        <li>Time: <%= "#{reservation.hour}:#{reservation.minute} #{reservation.am_pm}" %>
-        <li>Party Size: <%= "#{reservation.party_size}" %>
-      </ul>
-    <% end %>
+      <% reservations.each do |reservation| %>
+        <ul>
+          <li>Reservation Date: <%= "#{reservation.date}" %>
+          <li>Time: <%= "#{reservation.hour}:#{reservation.minute} #{reservation.am_pm}" %>
+          <li>Party Size: <%= "#{reservation.party_size}" %>
+        </ul>
+      <form action='/<%= reservation[:id] %>/reservation/delete' method='POST'>
+        <input type="hidden" name="_method" value="DELETE">
+        <input type='submit' value="Deny Reservation"/>
+      </form>
     </div>
+    <% end %>
   <% end %>
       </div><!-- #content -->
     </div><!-- #container -->

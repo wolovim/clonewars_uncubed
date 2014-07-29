@@ -102,6 +102,11 @@ class UncubedApp < Sinatra::Base
   end
 
 
+  delete '/:id/reservation/delete' do |id|
+    Database.delete_reservation(id)
+    redirect to ('/pricing')
+  end
+
   post '/reservation' do
     Database.reservations.insert(
                                  :date   => params[:reservations][:date],

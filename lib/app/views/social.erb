@@ -1,22 +1,22 @@
-<h1>See what were up to</h1>
-
+<br/>
+<h1>Events at UnCubed</h1>
+<br/>
 <h3>Have an event you'd like us to know about?</h3>
-  <p>
-    <a href="/event_login">Click Here</a> 
-<-- takes user to a form to submit event details -->
-  </p>
+  <a href="/event_login">Click Here</a> 
   <br/><hr/>
 
 <h1>Upcoming Events</h1>
-
+<br/>
 <ul>
   <% events.each do |event| %>
     <li>
-      <h3><b><%= event.company %></b></h3><br/>
+      <h2><b><%= event.company %></b></h2>
       <b><%= event.title %></b><br/>
-      <%= event.date %><% event.time %><br/>
-      <%= event.location %><br/>
-      <%= event.details %>
+      Date: <%= event.date %> Time: <% event.time %><br/>
+      Location: <%= event.location %><br/>
+      Details: <%= event.details %>
+      <br/>
+      <br/>
     </li>
   <% end %>
 </ul>

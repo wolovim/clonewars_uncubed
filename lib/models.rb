@@ -37,6 +37,23 @@ class Database
     end
   end
 
+  unless DB.table_exists? (:events)
+    DB.create_table :events do
+      primary_key   :id
+      string        :company
+      string        :title
+      string        :date
+      integer       :time
+      string        :am_pm
+      string        :location
+      string        :details
+    end
+  end
+
+  def self.events
+    DB[:events]
+  end
+
   unless DB.table_exists? (:contents)
     DB.create_table :contents do
       primary_key :id
@@ -84,6 +101,10 @@ class Database
 
   def self.delete_member(id)
     DB[:members].where(:id => id).delete
+  end
+
+  def self.delete_reservation(id)
+    DB[:reservations].where(:id => id).delete
   end
 
   def self.find_member(id)
