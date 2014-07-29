@@ -11,17 +11,7 @@
             <p><a onclick="javascript:pageTracker._trackPageview('/outgoing/www.uncubedspace.com/contact-us/');"  href="http://www.uncubedspace.com/contact-us/" title="Contact Us">Contact Us</a> to schedule a tour!</p>
           </div><!-- .entry-content -->
 
-      <% hour = Time.now.strftime('%H').to_i %>
-      <% if hour < 12 %>
-        <% salutation = 'Good morning!' %>
-      <% elsif hour < 18 %>
-        <% salutation = 'Good afternoon!' %>
-      <% else %>
-        <% salutation = 'Good evening!' %>
-      <% end %>
-      <div id='banner' style='display:none'>
-        <%= "#{salutation} Thanks for visiting, if you have any questions call (555) 555-5555" %>
-      </div>
+      
       </div><!-- #post-## -->
 
       <div id="comments">

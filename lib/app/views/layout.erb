@@ -25,6 +25,7 @@
               <li id="menu-item-213" class="bk6" ><a href="/nearby" style="background: url('http://uncubed.johnwilker.com/wp-content/uploads/2011/08/nearbyheader.png') repeat scroll 0%;">Around Uncubed</a></li>
             </ul>
           </div>
+
           <!-- MENU MANIPULATION JAVASCRIPT-->
           <script type="text/javascript">
             window.addEvent('domready', function(){
@@ -63,7 +64,17 @@
         </li>
       </ul>
     </div><!-- #primary .widget-area -->
-
+    <% hour = Time.now.strftime('%H').to_i %>
+    <% if hour < 12 %>
+      <% salutation = 'Good morning!' %>
+    <% elsif hour < 18 %>
+      <% salutation = 'Good afternoon!' %>
+    <% else %>
+      <% salutation = 'Good evening!' %>
+    <% end %>
+    <div id='banner' style='display:none'>
+      <%= "#{salutation} Thanks for visiting, if you have any questions call (555) 555-5555" %>
+    </div>
     <div id="sidebar2" class="widget-area" role="complementary">
       <ul class="xoxo">
         <li class="widget-container"> <h3 class="widget-title">Categories</h3>
