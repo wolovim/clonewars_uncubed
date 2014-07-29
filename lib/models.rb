@@ -93,7 +93,7 @@ class Database
   end
 
   def self.delete_reservation(id)
-    DB[:members].where(:id => id).delete
+    DB[:reservations].where(:id => id).delete
   end
 
   def self.find_member(id)
