@@ -8,7 +8,7 @@ class UserCreatesAMember < FeatureTest
     assert page.has_css?('.entry-content')
   end
 
-  def test_a_user_can_login_as_admin_and_create_member
+  def test_a_user_can_login_as_admin
     visit '/login'
     assert_equal 200, page.status_code
     fill_in('username', with: "admin")
