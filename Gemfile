@@ -7,8 +7,9 @@ gem 'sqlite3'
 gem 'pry'
 gem 'sass'
 gem 'pony'
-gem 'mail'
+gem 'mail', '~> 2.5.4'
 gem 'events'
+gem 'contact'
 
 group :development do
   gem 'shotgun'
