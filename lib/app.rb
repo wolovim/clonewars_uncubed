@@ -40,7 +40,8 @@ class UncubedApp < Sinatra::Base
 
   get '/pricing' do
     member_types = MemberType.all
-    erb :pricing, locals: {member_types: member_types}
+    reservations = Reservation.all
+    erb :pricing, locals: {member_types: member_types, reservations: reservations}
   end
 
   get '/gallery' do
@@ -95,15 +96,22 @@ class UncubedApp < Sinatra::Base
     redirect to('/pricing')
   end
 
+  post '/reservation' do
+    Database.reservations.insert(
+                                 :date   => params[:reservations][:date],
+                                 :hour   => params[:reservations][:hour],
+                                 :minute => params[:reservations][:minute],
+                                 :am_pm  => params[:reservations][:am_pm],
+                                 :party_size => params[:reservations][:party_size]
+                                )
+
+    # reservations = Reservation.all
+    # erb :pricing, locals: {reservations: reservations}
+    redirect to('/pricing')
+  end
+
   post '/members' do
-    Database.membership.insert(:first_name => params[:member][:first_name],
-                   :last_name => params[:member][:last_name],
-                   :email_address => params[:member][:email_address],
-                   :phone_number => params[:member][:phone_number],
-                   :company => params[:member][:company],
-                   :membership_type_id => params[:member][:membership_type_id],
-                   :joined_at => Time.now
-                  )
+    Database.add_member(params[:member])
     redirect to('/members')
   end
 
@@ -119,7 +127,7 @@ class UncubedApp < Sinatra::Base
   end
 
   delete '/:id' do |id|
-    Database.membership.where(:id => id).delete
+    Database.delete_member(id)
     redirect to('/members')
   end
 
