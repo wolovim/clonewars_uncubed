@@ -26,8 +26,6 @@ class Event
       "details"  => details
     }
   end
-
-  
 end
 
 # Company

@@ -6,3 +6,9 @@ events:
   time: Time
   location: Location
   details: Details
+- company: another company
+  title: another event
+  date: 
+  time: timetime
+  location: other
+  details: deetas
