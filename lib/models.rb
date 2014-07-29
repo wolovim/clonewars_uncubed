@@ -40,9 +40,20 @@ class Database
   unless DB.table_exists? (:contents)
     DB.create_table :contents do
       primary_key :id
+      string      :page
       string      :title
       string      :body
     end
+  end
+
+  def self.find_page_content(page)
+    DB[:contents].where(:page => page)
+  end
+
+  def self.add_content(data)
+    DB[:contents].insert(:page => data[:page],
+                    :title => data[:title],
+                    :body => data[:body])
   end
 
   def self.membership

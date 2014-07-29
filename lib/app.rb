@@ -28,7 +28,18 @@ class UncubedApp < Sinatra::Base
 
 #############( INDEX )#############
   get '/' do
-    erb :index
+    content = Database.find_page_content('index')
+    erb :index, locals: {content: content[:id]}
+  end
+
+##########( CONTENT MGMT )##########
+  get '/add_content' do
+    erb :add_content
+  end
+
+  post '/add_content' do
+    Database.add_content(params[:content])
+    redirect to('/')
   end
 
 ##########( LOGIN/LOGOUT )##########

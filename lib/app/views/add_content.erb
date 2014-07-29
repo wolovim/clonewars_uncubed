@@ -1,0 +1,11 @@
+<% if admin? %>
+  <form action'/add_content' method='POST' style='float: left;'
+    <h2>[Add Page Content]</h2><br/>
+    <strong>Page: </strong><br/><input type='text' name='content[page]'></textarea><br/>
+    <strong>Title: </strong><br/><textarea name='content[title]'></textarea><br/>
+    <strong>Body: </strong><br/><textarea name='content[body]'></textarea><br/>
+    <input type="submit">
+  </form>
+<% else %>
+  <p>You shouldn't be here!</p>
+<% end %>
