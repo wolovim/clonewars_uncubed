@@ -30,13 +30,7 @@ class UncubedApp < Sinatra::Base
     erb :index
   end
 
-<<<<<<< HEAD
-              # LOGIN/LOGOUT
-
-            # __________ADMIN__________
-=======
 ##########( LOGIN/LOGOUT )##########
->>>>>>> b98b74153d630d08947186d8b686bfaf06cdc71c
   helpers do
     def admin?
       session[:admin]
@@ -60,7 +54,8 @@ class UncubedApp < Sinatra::Base
     session.clear
     redirect to('/')
   end
-            # ____________MEMBERS__________
+
+##########( MEMBERS )##########
     helpers do
     def member?
       session[:member]
@@ -128,7 +123,6 @@ class UncubedApp < Sinatra::Base
   end
 
   put '/:id/edit' do |id|
-    binding.pry
     Database.update_member(id.to_i, params[:member])
     redirect to('/members')
   end
@@ -138,31 +132,12 @@ class UncubedApp < Sinatra::Base
     redirect to('/members')
   end
 
-<<<<<<< HEAD
-  get '/:id/edit' do |id|
-    member = Database.find_member(id.to_i)
-    erb :edit_member, locals: {member: member}
-  end
-
-  put '/:id/edit' do |id|
-    binding.pry
-    Database.update_member(id.to_i, params[:member])
-    redirect to('/members')
-  end
-  
-                    # GALLERY
-=======
 ##########( GALLERY )##########
->>>>>>> b98b74153d630d08947186d8b686bfaf06cdc71c
   get '/gallery' do
     erb :gallery
   end
 
-<<<<<<< HEAD
-                    # CONTACT_US
-=======
 ##########( CONTACT US )##########
->>>>>>> b98b74153d630d08947186d8b686bfaf06cdc71c
   get '/contact-us' do
     erb :contact_us
   end
