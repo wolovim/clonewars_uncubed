@@ -2,6 +2,7 @@ class Event
   attr_reader :company, :title, :date, :time, :location, :details, :id
 
   def initialize(attributes = {})
+    # binding.pry
     @company  = attributes["company"]
     @title    = attributes["title"]
     @date     = attributes["date"]
@@ -25,6 +26,8 @@ class Event
       "details"  => details
     }
   end
+
+  
 end
 
 # Company

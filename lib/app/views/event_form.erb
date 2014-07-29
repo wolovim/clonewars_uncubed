@@ -1,3 +1,24 @@
+
+
+
+        </ul>
+      </li>
+        <li id="member" class="widget-container">
+          <h3 class="widget-title">Members Login:</h3>
+          <ul>
+            <% if !admin? %>  <-- USER LOGIN
+              <li><a href="/login">Log in</a></li>
+            <% else%>
+              <li><a href="/logout">Log out</a></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+
+
+
+<% if admin? %>
+
 <h1>Tell us about your event</h1>
 
   <form action="/social" method="POST" name="events">
@@ -18,7 +39,8 @@
     <input type="submit" name="Submit"/>
   </form>
 
-Company
+<% end %>
+<!-- Company
 title
 date
 location
@@ -26,4 +48,4 @@ description
 
 Take this info
 Put it into a database (like ideabox)
-Then display it formatted on the page
+Then display it formatted on the page -->

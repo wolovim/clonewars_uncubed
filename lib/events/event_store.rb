@@ -3,7 +3,7 @@ require "yaml/store"
 class EventStore
 
   def self.create(attributes)
-    event = Event.create(attributes)
+    event = Event.new(attributes)
     database.transaction do 
       database["events"] << event.to_h
     end
@@ -11,7 +11,6 @@ class EventStore
 
   def self.database
     return @database if @database
-  end
 
     @database = YAML::Store.new("db/events")
     @database.transaction do
@@ -31,5 +30,6 @@ class EventStore
   def self.raw_events
     database.transaction do |db|
       db["events"] || []
+    end
   end
 end

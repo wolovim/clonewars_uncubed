@@ -1,2 +1,8 @@
 ---
-events: []
+events:
+- company: Company name
+  title: Event title
+  date: 
+  time: Time
+  location: Location
+  details: Details

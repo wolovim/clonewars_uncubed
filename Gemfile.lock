@@ -35,6 +35,8 @@ GEM
       rack (>= 1.0)
     sass (3.3.10)
     sequel (4.12.0)
+    shotgun (0.9)
+      rack (>= 1.0)
     simplecov (0.9.0)
       docile (~> 1.1.0)
       multi_json
@@ -68,6 +70,7 @@ DEPENDENCIES
   pry
   sass
   sequel (~> 4.12.0)
+  shotgun
   simplecov
   sinatra
   sinatra-contrib

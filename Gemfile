@@ -8,9 +8,13 @@ gem 'pry'
 gem 'sass'
 gem 'pony'
 
+group :development do
+  gem 'shotgun'
+end
+
 group :test do
-  gem 'minitest', require: false, group: :test
-  gem 'simplecov', require: false, group: :test
+  gem 'minitest', require: false
+  gem 'simplecov', require: false
   gem 'capybara'
   gem 'launchy'
 end
