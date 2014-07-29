@@ -73,7 +73,7 @@ class UncubedApp < Sinatra::Base
     # , locals: {events: EventStore.all.sort, event: Event.new(params)}
   end
 
-  post '/social' do
+  post '/events' do
     puts(params[:event].inspect)
     EventStore.create(Event.new(params[:idea]).to_h)
     redirect '/social'
