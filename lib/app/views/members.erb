@@ -1,4 +1,4 @@
-<h1>Members</h1>
+<h1 id="member-title">Members</h1>
 <p>Membership count: <%= members.count %></p>
 <% if members.empty? %>
   <p>There are no members registered yet.</p>
@@ -50,7 +50,7 @@
 <% end %>
 <br/>
 <% if admin? %>
-  <form action='/members' method='POST' style='float: left;'>
+  <form action='/members' method='POST' style='float: left;' id="admin_member_form">
     <h2>[Input a new member]</h2><br/>
     <strong>Company: </strong><br><input type='text' name='member[company]'/><br/>
     <strong>Member Type: </strong><br><input type='text' name='member[membership_type_id]'/><br/>

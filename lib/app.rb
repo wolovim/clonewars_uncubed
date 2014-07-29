@@ -5,7 +5,7 @@ require 'sqlite3'
 require_relative 'models'
 require 'pony'
 require 'mail'
-require 'contact'
+# require 'contact'
 
 class UncubedApp < Sinatra::Base
   set :method_override, true
