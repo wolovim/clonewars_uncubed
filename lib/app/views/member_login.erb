@@ -1,0 +1,37 @@
+<div id="login" style="float: left">
+  <h1>Uncubed</h1><br/>
+  <h2>Member Login</h2><br/>
+
+  <form name="loginform" id="loginform" action="/member_login" method="POST">
+    <p>
+      <label for="username">Username<br />
+      <input type="text" name="username" id="user_login" class="input" value="" size="20" /></label>
+    </p>
+    <p>
+      <label for="password">Password<br />
+      <input type="password" name="password" id="user_pass" class="input" value="" size="20" /></label>
+    </p>
+    <!-- <p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever"  /> Remember Me</label></p> -->
+
+    <input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log In" /><br/><br/>
+
+  </form>
+
+  <script type="text/javascript">
+    function wp_attempt_focus(){
+      setTimeout( function(){ try{
+          d = document.getElementById('user_login');
+          d.focus();
+          d.select();
+        } catch(e){}
+      }, 200);
+    }
+
+  wp_attempt_focus();
+  if(typeof wpOnload=='function')wpOnload();
+</script>
+
+  <p id="backtoblog"><a href="/" title="Are you lost?">&larr; Back to Home</a></p>
+
+</div> 
+<div class="clear"></div>

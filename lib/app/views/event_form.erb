@@ -6,10 +6,10 @@
         <li id="member" class="widget-container">
           <h3 class="widget-title">Members Login:</h3>
           <ul>
-            <% if !admin? %>  <-- USER LOGIN
-              <li><a href="/login">Log in</a></li>
+            <% if !member? %> 
+              <li><a href="/member_login">Log in</a></li>
             <% else%>
-              <li><a href="/logout">Log out</a></li>
+              <li><a href="/member_logout">Log out</a></li>
             <% end %>
           </ul>
         </li>

@@ -31,6 +31,8 @@ class UncubedApp < Sinatra::Base
   end
 
               # LOGIN/LOGOUT
+
+            # __________ADMIN__________
   helpers do
     def admin?
       session[:admin]
@@ -53,6 +55,25 @@ class UncubedApp < Sinatra::Base
   get '/logout' do
     session.clear
     redirect to('/')
+  end
+            # ____________MEMBERS__________
+    helpers do
+    def member?
+      session[:member]
+    end
+  end
+
+  get '/member_login' do
+    erb :member_login
+  end
+
+  post '/member_login' do
+    if params[:username] == settings.username && params[:password] == settings.password
+      session[:member] = true
+      redirect to('/event_form')
+    else
+      erb :member_login
+    end
   end
 
               # PRICING
@@ -102,16 +123,6 @@ class UncubedApp < Sinatra::Base
     redirect to('/members')
   end
 
-                    # GALLERY
-  get '/gallery' do
-    erb :gallery
-  end
-
-<<<<<<< HEAD
-                    # CONTACT_US
-  get '/contact-us' do
-    erb :contact_us
-=======
   get '/:id/edit' do |id|
     member = Database.find_member(id.to_i)
     erb :edit_member, locals: {member: member}
@@ -121,8 +132,16 @@ class UncubedApp < Sinatra::Base
     binding.pry
     Database.update_member(id.to_i, params[:member])
     redirect to('/members')
->>>>>>> f96a4fd2a8f3fc267c69f5bbdbb5a73984d764ef
   end
+  
+                    # GALLERY
+  get '/gallery' do
+    erb :gallery
+  end
+
+                    # CONTACT_US
+  get '/contact-us' do
+    erb :contact_us
 
   post '/contact' do
     Email.new(params)
