@@ -7,6 +7,8 @@ gem 'sqlite3'
 gem 'pry'
 gem 'sass'
 gem 'pony'
+gem 'mail'
+gem 'events'
 
 group :development do
   gem 'shotgun'
@@ -18,4 +20,3 @@ group :test do
   gem 'capybara'
   gem 'launchy'
 end
-

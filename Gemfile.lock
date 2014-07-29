@@ -11,6 +11,7 @@ GEM
       xpath (~> 2.0)
     coderay (1.1.0)
     docile (1.1.5)
+    events (0.9.8)
     launchy (2.4.2)
       addressable (~> 2.3)
     mail (2.6.1)
@@ -64,7 +65,9 @@ PLATFORMS
 
 DEPENDENCIES
   capybara
+  events
   launchy
+  mail
   minitest
   pony
   pry
