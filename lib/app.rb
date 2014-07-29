@@ -25,12 +25,12 @@ class UncubedApp < Sinatra::Base
     set    :password, 'omg'
   end
 
-              # INDEX
+##########( INDEX )##########
   get '/' do
     erb :index
   end
 
-              # LOGIN/LOGOUT
+##########( LOGIN/LOGOUT )##########
   helpers do
     def admin?
       session[:admin]
@@ -55,7 +55,7 @@ class UncubedApp < Sinatra::Base
     redirect to('/')
   end
 
-              # PRICING
+##########( PRICING )##########
   get '/pricing' do
     member_types = MemberType.all
     reservations = Reservation.all
@@ -84,7 +84,7 @@ class UncubedApp < Sinatra::Base
     redirect to('/pricing')
   end
 
-                  # MEMBERSHIPS/MEMBERS
+##########( MEMBERSHIPS/MEMBERS )##########
   get '/members' do
     members = Member.all
     member_types = MemberType.all
@@ -97,21 +97,6 @@ class UncubedApp < Sinatra::Base
     redirect to('/members')
   end
 
-  delete '/:id' do |id|
-    Database.delete_member(id)
-    redirect to('/members')
-  end
-
-                    # GALLERY
-  get '/gallery' do
-    erb :gallery
-  end
-
-<<<<<<< HEAD
-                    # CONTACT_US
-  get '/contact-us' do
-    erb :contact_us
-=======
   get '/:id/edit' do |id|
     member = Database.find_member(id.to_i)
     erb :edit_member, locals: {member: member}
@@ -121,15 +106,28 @@ class UncubedApp < Sinatra::Base
     binding.pry
     Database.update_member(id.to_i, params[:member])
     redirect to('/members')
->>>>>>> f96a4fd2a8f3fc267c69f5bbdbb5a73984d764ef
   end
+
+  delete '/:id' do |id|
+    Database.delete_member(id)
+    redirect to('/members')
+  end
+
+##########( GALLERY )##########
+  get '/gallery' do
+    erb :gallery
+  end
+
+##########( CONTACT US )##########
+  get '/contact-us' do
+    erb :contact_us
 
   post '/contact' do
     Email.new(params)
     redirect '/contact-us'
   end
 
-                    # SOCIAL/EVENTS
+##########( SOCIAL/EVENTS )##########
   get '/social' do
     erb :social, locals: {events: EventStore.all.sort, event: Event.new(params)}
   end
@@ -144,7 +142,7 @@ class UncubedApp < Sinatra::Base
     erb :event_form
   end
 
-                    # NEARBY
+##########( NEARBY )##########
   get '/nearby' do
     erb :nearby
   end
