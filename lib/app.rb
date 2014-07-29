@@ -42,12 +42,12 @@ class UncubedApp < Sinatra::Base
     redirect to('/')
   end
 
-  get '/:page/edit' do |page|
+  get '/pages/:page/edit' do |page|
     content = Database.find_page_content(page)
     erb :content_editor, locals: {content: content[:id]}
   end
 
-  put '/:page/edit' do |page|
+  put '/pages/:page/edit' do |page|
     Database.edit_content(page, params[:content])
     redirect to('/')
   end

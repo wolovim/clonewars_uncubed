@@ -4,7 +4,7 @@
         <!-- Display Title -->
         <% if content[:page] %>
           <% if admin? %>
-            <form action='/<%= content[:page] %>/edit' method=GET>
+            <form action='/pages/<%= content[:page] %>/edit' method=GET>
               <input type='submit' value="Edit Content">
             </form>
           <% end %>
