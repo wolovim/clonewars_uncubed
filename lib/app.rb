@@ -14,13 +14,14 @@ class UncubedApp < Sinatra::Base
   set :sessions => true
   set :root, "lib/app"
   get('/styles.css'){ scss :styles }
+  enable :sessions
 
   configure :development do
+    set :session_secret, "something"
     register Sinatra::Reloader
   end
 
   configure do
-    enable :sessions
     set    :username, 'admin'
     set    :password, 'omg'
   end
@@ -56,9 +57,9 @@ class UncubedApp < Sinatra::Base
   end
 
 ###############( MEMBERS LOGIN) ##################
-    helpers do
+  helpers do
     def member?
-      session[:member]
+      session[:admin]
     end
   end
 
@@ -68,7 +69,7 @@ class UncubedApp < Sinatra::Base
 
   post '/member_login' do
     if params[:username] == settings.username && params[:password] == settings.password
-      session[:member] = true
+      session[:admin] = 'hello'
       redirect to('/event_form')
     else
       erb :member_login
@@ -161,13 +162,17 @@ class UncubedApp < Sinatra::Base
 
 ##########( SOCIAL/EVENTS )##########
   get '/social' do
-    erb :social, locals: {events: EventStore.all.sort, event: Event.new(params)}
+    erb :social, locals: {events: EventStore.all, event: Event.new(params)}
   end
 
   post '/social' do
     event_data = Event.new(params[:event]).to_h
     EventStore.create(event_data)
     redirect '/social'
+  end
+
+  get '/event_login' do
+    erb :event_login
   end
 
   get '/event_form' do
