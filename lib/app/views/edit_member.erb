@@ -1,0 +1,20 @@
+<form action='/<%= member[:id][:id] %>/edit' method='POST'>
+  <p>
+    <% if member[:id] %>
+      Edit Member:
+    <% else %>
+      Your Idea:
+    <% end %>
+  </p>
+  <% if member[:id] %>
+    <input type="hidden" name="_method" value="PUT" />
+  <% end %>
+  Company: <input type='text' name='member[company]' value="<%= member[:id][:company] %>"/><br/>
+  Membership ID Type: <input type='text' name='member[membership_type_id]' value="<%= member[:id][:membership_type_id] %>"/><br/>
+  First Name: <input type='text' name='member[first_name]' value="<%= member[:id][:first_name] %>"/><br/>
+  Last Name: <input type='text' name='member[last_name]' value="<%= member[:id][:last_name] %>"/><br/>
+  Email Address: <input type='text' name='member[email_address]' value="<%= member[:id][:email_address] %>"/><br/>
+  Joined At: <input type='text' name='member[joined_at]' value="<%= member[:id][:joined_at] %>"/><br/>
+  ID: <input type='text' name='member[id]' value="<%= member[:id][:id] %>"/><br/>
+  <input type='submit'/>
+</form>

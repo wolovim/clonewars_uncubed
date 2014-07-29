@@ -107,9 +107,21 @@ class UncubedApp < Sinatra::Base
     erb :gallery
   end
 
+<<<<<<< HEAD
                     # CONTACT_US
   get '/contact-us' do
     erb :contact_us
+=======
+  get '/:id/edit' do |id|
+    member = Database.find_member(id.to_i)
+    erb :edit_member, locals: {member: member}
+  end
+
+  put '/:id/edit' do |id|
+    binding.pry
+    Database.update_member(id.to_i, params[:member])
+    redirect to('/members')
+>>>>>>> f96a4fd2a8f3fc267c69f5bbdbb5a73984d764ef
   end
 
   post '/contact' do
