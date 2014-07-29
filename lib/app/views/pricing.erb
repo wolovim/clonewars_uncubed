@@ -90,8 +90,19 @@
 <% if member_types.empty? %>
   <p>There are no reservations yet.</p>
 <% else %>
-<table style="width: 60%; border: 1px solid;">
+<table style="width: 40%; border: 1px solid;">
   <tbody>
+    <style>
+      th {
+        padding: 3px;
+        border: 1px solid;
+      }
+      td {
+        padding: 3px;
+        border: 1px solid;
+        text-align: center;
+      }
+    </style>
     <tr style="border-bottom: 2px solid black; background-color: #ddd;">
       <th>ID</th>
       <th>Name</th>
