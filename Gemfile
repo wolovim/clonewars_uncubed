@@ -7,6 +7,9 @@ gem 'sqlite3'
 gem 'pry'
 gem 'sass'
 gem 'pony'
+gem 'mail', '~> 2.5.4'
+gem 'events'
+gem 'contact'
 
 group :development do
   gem 'shotgun'
@@ -18,4 +21,3 @@ group :test do
   gem 'capybara'
   gem 'launchy'
 end
-

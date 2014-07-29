@@ -54,6 +54,14 @@ class Database
     DB[:events]
   end
 
+  unless DB.table_exists? (:contents)
+    DB.create_table :contents do
+      primary_key :id
+      string      :title
+      string      :body
+    end
+  end
+
   def self.membership
     DB[:members]
   end
@@ -111,4 +119,8 @@ end
 
 class Reservation < Sequel::Model(:reservations)
   #Reservation Model
+end
+
+class Content < Sequel::Model(:contents)
+  #Content Model
 end

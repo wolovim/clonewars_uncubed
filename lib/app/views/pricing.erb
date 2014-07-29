@@ -53,7 +53,7 @@
   <div id='reserveRoom'
      <h3>Reserve a confrence room</h3>
      <form action='/reservation' method='POST'>
-        <!-- <p>Date: <input type='text' name='reservations[date]' class='date-pick'></p> -->
+        <p>Date: <input type='text' name='reservations[date]' class='date-pick'></p>
         <p>Time:</p>
         <select name='reservations[hour]'>
           <%hours = Array(1..12)%>
@@ -125,14 +125,16 @@
       <strong>Total Seats: </strong><br><input type='text' name='types[total_seats]'/><br/>
       <input type='submit' value='Add Option'/>
     </form>
-
-    <!-- <% reservations.each do |reservation| %>
+    <div id='currentReservations' style='position:right;float:right;'>
+      <h2>Current reservations</h2>
+    <% reservations.each do |reservation| %>
       <ul>
-        <li><%= "#{reservation.date}" %>
-        <li><%= "#{reservation.hour}:#{reservation.minute} #{reservations.am_pm}" %>
-        <li><%= "#{reservation.party_size}" %>
-      </ul>-->
+        <li>Reservation Date: <%= "#{reservation.date}" %>
+        <li>Time: <%= "#{reservation.hour}:#{reservation.minute} #{reservation.am_pm}" %>
+        <li>Party Size: <%= "#{reservation.party_size}" %>
+      </ul>
     <% end %>
+    </div>
   <% end %>
       </div><!-- #content -->
     </div><!-- #container -->
