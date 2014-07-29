@@ -120,6 +120,16 @@ class UncubedApp < Sinatra::Base
     redirect to('/')
   end
 
+  get '/:id/edit' do |id|
+    member = Database.find_member(id.to_i)
+    erb :edit_member, locals: {member: member}
+  end
+
+  put '/:id/edit' do |id|
+    binding.pry
+    Database.update_member(id.to_i, params[:member])
+    redirect to('/members')
+  end
 
   post '/contact' do
     Email.new(params)

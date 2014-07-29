@@ -66,6 +66,22 @@ class Database
   def self.delete_member(id)
     DB[:members].where(:id => id).delete
   end
+
+  def self.find_member(id)
+    DB[:members].where(:id => id)
+  end
+
+  def self.update_member(id, data)
+    DB[:members].where(:id => id)
+        .update(:company => data[:company],
+                :membership_type_id => data[:membership_type_id],
+                :first_name => data[:first_name],
+                :last_name => data[:last_name],
+                :email_address => data[:email_address],
+                :joined_at => data[:joined_at],
+                :id => data[:id]
+                )
+  end
 end
 
 class Member < Sequel::Model(:members)

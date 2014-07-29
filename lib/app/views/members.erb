@@ -25,6 +25,7 @@
           <th>Join Date</th>
           <th>ID</th>
           <% if admin? %>
+            <th>Edit?</th>
             <th>Remove?</th>
           <% end %>
         </tr>
@@ -38,6 +39,12 @@
             <td><%= member[:joined_at].to_date if member[:joined_at] %></td>
             <td><%= member[:id] %></td>
             <% if admin? %>
+              <td>
+                <form action='/<%= member[:id] %>/edit' method='GET' style="display: inline">
+                  <input type="hidden" name "_method" value="PUT">
+                  <input type="submit" value="√"/>
+                </form>
+              </td>
               <td>
                 <form action='/<%= member[:id] %>' method='POST' style="display: inline">
                   <input type="hidden" name="_method" value="DELETE">
