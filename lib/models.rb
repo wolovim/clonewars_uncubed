@@ -70,7 +70,15 @@ class Database
   def self.add_content(data)
     DB[:contents].insert(:page => data[:page],
                     :title => data[:title],
-                    :body => data[:body])
+                    :body => data[:body]
+                    )
+  end
+
+  def self.edit_content(page, data)
+    DB[:contents].where(:page => page)
+                  .update(:title => data[:title],
+                          :body => data[:body]
+                          )
   end
 
   def self.membership
