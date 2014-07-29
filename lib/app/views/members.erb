@@ -23,6 +23,7 @@
           <th>Last Name</th>
           <th>Email</th>
           <th>Join Date</th>
+          <th>ID</th>
           <% if admin? %>
             <th>Remove?</th>
           <% end %>
@@ -35,6 +36,7 @@
             <td><%= member[:last_name] %></td>
             <td><%= member[:email_address] %></td>
             <td><%= member[:joined_at].to_date if member[:joined_at] %></td>
+            <td><%= member[:id] %></td>
             <% if admin? %>
               <td>
                 <form action='/<%= member[:id] %>' method='POST' style="display: inline">

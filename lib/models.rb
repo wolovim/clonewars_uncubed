@@ -46,11 +46,25 @@ class Database
   end
 
   def self.members_with_types
-    DB[:members].join(:member_types, :id => :membership_type_id)
+    DB[:member_types].join(:members, :membership_type_id => :id)
   end
 
   def self.reservations
     DB[:reservations]
+  end
+
+  def self.add_member(data)
+    DB[:members].insert(:first_name => data[:first_name],
+                   :last_name => data[:last_name],
+                   :email_address => data[:email_address],
+                   :phone_number => data[:phone_number],
+                   :company => data[:company],
+                   :membership_type_id => data[:membership_type_id],
+                   :joined_at => Time.now)
+  end
+
+  def self.delete_member(id)
+    DB[:members].where(:id => id).delete
   end
 end
 
