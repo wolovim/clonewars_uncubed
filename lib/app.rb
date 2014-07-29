@@ -152,6 +152,7 @@ class UncubedApp < Sinatra::Base
 ##########( CONTACT US )##########
   get '/contact-us' do
     erb :contact_us
+  end
 
   post '/contact' do
     Email.new(params)
