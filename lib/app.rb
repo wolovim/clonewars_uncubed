@@ -26,7 +26,7 @@ class UncubedApp < Sinatra::Base
     set    :password, 'omg'
   end
 
-##########( INDEX )##########
+#############( INDEX )#############
   get '/' do
     erb :index
   end
@@ -76,7 +76,7 @@ class UncubedApp < Sinatra::Base
     end
   end
 
-##########( PRICING )##########
+############( PRICING )############
   get '/pricing' do
     member_types = MemberType.all
     reservations = Reservation.all
@@ -124,7 +124,6 @@ class UncubedApp < Sinatra::Base
   end
 
   put '/:id/edit' do |id|
-    binding.pry
     Database.update_member(id.to_i, params[:member])
     redirect to('/members')
   end
@@ -134,18 +133,7 @@ class UncubedApp < Sinatra::Base
     redirect to('/members')
   end
 
-  get '/:id/edit' do |id|
-    member = Database.find_member(id.to_i)
-    erb :edit_member, locals: {member: member}
-  end
-
-  put '/:id/edit' do |id|
-    binding.pry
-    Database.update_member(id.to_i, params[:member])
-    redirect to('/members')
-  end
-  
-##########( GALLERY )##########
+############( GALLERY )###########
   get '/gallery' do
     erb :gallery
   end
@@ -179,7 +167,7 @@ class UncubedApp < Sinatra::Base
     erb :event_form
   end
 
-##########( NEARBY )##########
+############( NEARBY )#############
   get '/nearby' do
     erb :nearby
   end
