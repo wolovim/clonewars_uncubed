@@ -6,6 +6,7 @@ require_relative 'models'
 require 'pony'
 require 'mail'
 require 'contact'
+require 'events'
 
 class UncubedApp < Sinatra::Base
   set :method_override, true
@@ -19,8 +20,8 @@ class UncubedApp < Sinatra::Base
 
   configure do
     enable :sessions
-    set :username, 'admin'
-    set :password, 'omg'
+    set    :username, 'admin'
+    set    :password, 'omg'
   end
 
   helpers do
@@ -57,13 +58,26 @@ class UncubedApp < Sinatra::Base
     erb :contact_us
   end
 
-  get '/social' do
-    erb :social
-  end
-
   get '/nearby' do
     erb :nearby
   end
+
+# ______________________________________________
+  get '/social' do
+    erb :social, locals: {events: EventStore.all.sort, event: Event.new(params)}
+  end # ?????????????????Unsure about this method...vs the one below....
+
+  get '/event_form' do
+    erb :event_form
+    # , locals: {events: EventStore.all.sort, event: Event.new(params)}
+  end
+
+  post '/social' do
+    puts(params[:event].inspect)
+    EventStore.create(Event.new(params[:idea]).to_h)
+    redirect '/social'
+  end
+# _______________________________________________
 
   post '/login' do
     if params[:username] == settings.username && params[:password] == settings.password

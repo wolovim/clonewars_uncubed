@@ -1,1 +1,29 @@
-<h1>Social</h1>
+<h1>See what were up to</h1>
+
+<h3>Have an event you'd like us to know about?</h3>
+  <p>
+    <a href="/event_form">Click Here</a> 
+<-- takes user to a form to submit event details -->
+  </p>
+  <br/><hr/>
+
+<h1>Upcoming Events</h1>
+
+<ul>
+  <% events.each do |event| %>
+    <li>
+      <h3><b><%= event.company %></b></h3><br/>
+      <b><%= event.title %></b><br/>
+      <%= event.date %><% event.time %><br/>
+      <%= event.location %><br/>
+      <%= event.details %>
+    </li>
+  <% end %>
+</ul>
+
+
+
+
+<-- events will be in order, I would like to set them to expire after the date of moving the next event up to the top of the page??? The movement should be auto, as the event will be deleted from the DB maybe...
+
+Page should show top 5 events --> 

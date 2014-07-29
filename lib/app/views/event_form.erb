@@ -1,0 +1,29 @@
+<h1>Tell us about your event</h1>
+
+  <form action="/social" method="POST" name="events">
+    <input type="text" placeholder="Company name" name="event[company]"/>
+    <br/>
+    <input type="text" placeholder="Event title" name="event[title]"/>
+    <br/>
+    <!-- <input type=????? (date box) placeholder="Date" name="event[date]"/> -->
+    <input type='text' placeholder="Date" class='date-pick'>
+    <br/>
+    <input type=????? (time thing?) placeholder="time" name="event[time]"
+    Location:
+    <input type="checkbox"/>Uncubed
+    <input type="checkbox"/>Other:<input type="text" name="event[location]"/>
+    <br/>
+    <textarea placeholder="Tell us about your event" rows="10" cols="50" name="event[details]"></textarea>
+    <br/>
+    <input type="submit" name="Submit"/>
+  </form>
+
+Company
+title
+date
+location
+description
+
+Take this info
+Put it into a database (like ideabox)
+Then display it formatted on the page
