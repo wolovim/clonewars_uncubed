@@ -1,0 +1,17 @@
+<!-- Display Title -->
+<% if content[:page] %>
+  <% if admin? %>
+    <form action='/pages/<%= content[:page] %>/edit' method=GET>
+      <input type='submit' value="Edit Content">
+    </form>
+  <% end %>
+  <h1><%= content[:title] %></h1>
+<% else %>
+  <p>No 'title' in DB</p>
+<% end %>
+<!-- Display Body -->
+<% if content[:page] %>
+  <%= content[:body] %>
+<% else %>
+  <p>No 'body' in DB</p>
+<% end %>
