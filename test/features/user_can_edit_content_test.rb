@@ -12,11 +12,20 @@ class UserCanEditContent < FeatureTest
     visit '/'
     assert_equal 200, page.status_code
     assert page.has_css?('#post-11')
+    # refute page.has_content?('Blah')
     click_button('Edit Content')
     #On edit page
     assert_equal 200, page.status_code
-    fill_in("content[title]", with: "Coworking for the Entrepreneurial Type")
+    fill_in("content[title]", with: "Coworking for the Entrepreneurial Blah")
     click_button("Update Content")
+    assert page.has_content?('Blah')
+    # File.delete(File.expand_path("~/Dropbox/Projects/Turing/clonewars_uncubed/test_database.db"))
   end
+  
+  # def test_that_teardown_worked
+  #   visit '/'
+  #   assert page.has_content?('Blah')
+  #   # File.delete(File.expand_path("~/Dropbox/Projects/Turing/clonewars_uncubed/test_database.db"))
+  # end
 
 end
