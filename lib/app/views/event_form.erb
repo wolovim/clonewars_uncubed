@@ -3,13 +3,12 @@
   <h1>Tell us about your event</h1>
   <br/>
     <form action="/social" method="POST" name="events">
-      <input type="text" placeholder="Company name" name="event[company]"/>
+      <input type="text" placeholder="Company name" name="event[company]" value="company"/>
       <br/>
-      <input type="text" placeholder="Event title" name="event[title]"/>
+      <input type="text" placeholder="Event title" name="event[title]" value="title"/>
       <br/>
       <input type='text' placeholder="Date" class='date-pick'>
       <br/>
-      <!-- <input type=????? (time thing?) placeholder="time" name="event[time]" -->
       Time:
       <select name='reservations[hour]'>
         <%hours = Array(1..12)%>
@@ -22,7 +21,7 @@
       <br/>
       <textarea placeholder="Tell us about your event" rows="10" cols="50" name="event[details]"></textarea>
       <br/>
-      <input type="submit" name="Submit"/>
+      <input type="submit" name="Submit" id="ef-submit"/>
     </form>
   <% end %>
 </div>

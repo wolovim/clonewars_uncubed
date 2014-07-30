@@ -3,8 +3,12 @@
   <h1>Events at UnCubed</h1>
   <br/>
   <h3>Have an event you'd like us to know about?</h3>
-    <a href="/event_login">Click Here</a> 
-    <br/><hr/>
+    <button class="button"><a href="/event_login">Click Here</a></button> 
+    <br/>
+    <% if member? %>
+    <a href="/member_logout" style="float: right">Logout</a>
+    <% end %>
+    <hr/>
 
   <h1>Upcoming Events</h1>
   <br/>

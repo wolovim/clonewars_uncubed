@@ -106,16 +106,11 @@ class UncubedApp < Sinatra::Base
     member_types = MemberType.all
     reservations = Reservation.all
     content      = Database.find_page_content('pricing')
-    erb :pricing, locals: { member_types: member_types, 
-                            reservations: reservations, 
-                            content: content[:id]
-                          }
+    erb :pricing, locals: { member_types: member_types, reservations: reservations, content: content[:id] }
   end
 
   post '/pricing' do
-    Database.membership_types.insert(:name        => params[:types][:name],
-                                     :total_seats => params[:types][:total_seats]
-                                    )
+    Database.membership_types.insert(:name => params[:types][:name], :total_seats => params[:types][:total_seats])
     redirect to('/pricing')
   end
 
@@ -140,10 +135,7 @@ class UncubedApp < Sinatra::Base
     members            = Member.all
     member_types       = MemberType.all
     members_with_types = Database.members_with_types
-    erb :members, locals: { members: members, 
-                            member_types: member_types, 
-                            members_with_types: members_with_types.to_a
-                          }
+    erb :members, locals: { members: members, member_types: member_types, members_with_types: members_with_types.to_a}
   end
 
   post '/members' do
