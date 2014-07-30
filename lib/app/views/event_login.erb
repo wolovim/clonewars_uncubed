@@ -1,13 +1,15 @@
-</ul>
-</li>
-<li id="member" class="widget-container">
-  <h3 class="widget-title">Members Login:</h3>
-  <ul>
-    <% if !member? %> 
-      <li><a href="/member_login">Log in</a></li>
-    <% else%>
-      <li><a href="/member_logout">Log out</a></li>
-    <% end %>
+<div style='float: left; width: 60%'>
   </ul>
-</li>
-</ul>
+    </li>
+    <li id="member" class="widget-container">
+      <h3 class="widget-title">Members Login:</h3>
+      <ul>
+        <% if !member? %> 
+          <li><a href="/member_login">Log in</a></li>
+        <% else%>
+          <li><a href="/member_logout">Log out</a></li>
+        <% end %>
+      </ul>
+    </li>
+  </ul>
+</div>
