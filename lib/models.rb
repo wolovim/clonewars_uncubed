@@ -2,11 +2,30 @@ require 'rubygems'
 require 'sequel'
 
 class Database
-  Sequel::Model.plugin(:schema)
-  DB = Sequel.sqlite('database.db')
+  attr_reader :connection
+  # Sequel::Model.plugin(:schema)
+  # DB = Sequel.sqlite('database.db')
 
-  unless DB.table_exists? (:members)
-    DB.create_table :members do
+  # def initialize
+  if ENV['RUBY_ENV'] == "test"
+    @connection = Sequel.sqlite('test_database.db') #test_connection
+  else
+    @connection = production_connection
+  end
+  # end
+
+  def self.production_connection
+    puts "Setting up PRODUCTION environment database..."
+    Sequel.sqlite('database.db')
+  end
+
+  def test_connection
+    puts "Setting up TEST environment database..."
+    Sequel.sqlite('test_database.db')
+  end
+
+  unless @connection.table_exists? (:members)
+    @connection.create_table :members do
       primary_key   :id
       integer       :membership_type_id
       string        :first_name, :null => false
@@ -18,16 +37,16 @@ class Database
     end
   end
 
-  unless DB.table_exists? (:member_types)
-    DB.create_table :member_types do
+  unless @connection.table_exists? (:member_types)
+    @connection.create_table :member_types do
       primary_key   :id
       string        :name
       integer       :total_seats
     end
   end
 
-  unless DB.table_exists? (:reservations)
-    DB.create_table :reservations do
+  unless @connection.table_exists? (:reservations)
+    @connection.create_table :reservations do
       primary_key   :id
       string        :date
       integer       :hour
@@ -37,8 +56,8 @@ class Database
     end
   end
 
-  unless DB.table_exists? (:events)
-    DB.create_table :events do
+  unless @connection.table_exists? (:events)
+    @connection.create_table :events do
       primary_key   :id
       string        :company
       string        :title
@@ -51,11 +70,11 @@ class Database
   end
 
   def self.events
-    DB[:events]
+    @connection[:events]
   end
 
-  unless DB.table_exists? (:contents)
-    DB.create_table :contents do
+  unless @connection.table_exists? (:contents)
+    @connection.create_table :contents do
       primary_key :id
       string      :page
       string      :title
@@ -64,41 +83,41 @@ class Database
   end
 
   def self.find_page_content(page)
-    DB[:contents].where(:page => page)
+    @connection[:contents].where(:page => page)
   end
 
   def self.add_content(data)
-    DB[:contents].insert(:page => data[:page],
+    @connection[:contents].insert(:page => data[:page],
                     :title => data[:title],
                     :body => data[:body]
                     )
   end
 
   def self.edit_content(page, data)
-    DB[:contents].where(:page => page)
+    @connection[:contents].where(:page => page)
                   .update(:title => data[:title],
                           :body => data[:body]
                           )
   end
 
   def self.membership
-    DB[:members]
+    @connection[:members]
   end
 
   def self.membership_types
-    DB[:member_types]
+    @connection[:member_types]
   end
 
   def self.members_with_types
-    DB[:member_types].join(:members, :membership_type_id => :id)
+    @connection[:member_types].join(:members, :membership_type_id => :id)
   end
 
   def self.reservations
-    DB[:reservations]
+    @connection[:reservations]
   end
 
   def self.add_member(data)
-    DB[:members].insert(:first_name => data[:first_name],
+    @connection[:members].insert(:first_name => data[:first_name],
                    :last_name => data[:last_name],
                    :email_address => data[:email_address],
                    :phone_number => data[:phone_number],
@@ -108,19 +127,19 @@ class Database
   end
 
   def self.delete_member(id)
-    DB[:members].where(:id => id).delete
+    @connection[:members].where(:id => id).delete
   end
 
   def self.delete_reservation(id)
-    DB[:reservations].where(:id => id).delete
+    @connection[:reservations].where(:id => id).delete
   end
 
   def self.find_member(id)
-    DB[:members].where(:id => id)
+    @connection[:members].where(:id => id)
   end
 
   def self.update_member(id, data)
-    DB[:members].where(:id => id)
+    @connection[:members].where(:id => id)
         .update(:company => data[:company],
                 :membership_type_id => data[:membership_type_id],
                 :first_name => data[:first_name],
