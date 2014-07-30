@@ -21,11 +21,4 @@ class UserCanEditContent < FeatureTest
     assert page.has_content?('Blah')
     # File.delete(File.expand_path("~/Dropbox/Projects/Turing/clonewars_uncubed/test_database.db"))
   end
-  
-  # def test_that_teardown_worked
-  #   visit '/'
-  #   assert page.has_content?('Blah')
-  #   # File.delete(File.expand_path("~/Dropbox/Projects/Turing/clonewars_uncubed/test_database.db"))
-  # end
-
 end
