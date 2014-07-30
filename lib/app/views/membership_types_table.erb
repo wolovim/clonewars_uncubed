@@ -1,0 +1,32 @@
+<% if member_types.empty? %>
+  <p>There are no membership types yet.</p>
+<% else %>
+<br/>
+<table style="width: 100%; border: 1px solid;">
+  <tbody>
+    <style>
+      th {
+        padding: 3px;
+        border: 1px solid;
+      }
+      td {
+        padding: 3px;
+        border: 1px solid;
+        text-align: center;
+      }
+    </style>
+    <tr style="border-bottom: 2px solid black; background-color: #ddd;">
+      <th>ID</th>
+      <th>Name</th>
+      <th>Total Seats</th>
+    </tr>
+    <% member_types.each do |type| %>
+      <tr>
+        <td><%= type.id %></td>
+        <td><%= type.name %></td>
+        <td><%= type.total_seats %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<% end %>

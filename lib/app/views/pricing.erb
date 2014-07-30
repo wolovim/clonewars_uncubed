@@ -1,9 +1,11 @@
-<div>
+<div style='float: left; width: 60%'>
+  <div style='float: left; width: 50%'>
   <h1>Pricing</h1>
   <p>&nbsp;</p>
   <div id="pricingDescription">
-    Wether you are an independent contractor or a business looking to expand your
-    workspace options, we have a plan designed for you.
+    Wether you are an independent contractor or a
+    business looking to expand your workspace options,
+    we have a plan designed for you.
     <div id='contactUsLink'><a href='/contact-us'>Contact us</a> to see what Uncubed is all about!</div>
   </div>
   <h3>OPEN DESK MEMBERSHIP</h3>
@@ -21,7 +23,6 @@
   <p>&nbsp;</p>
   </div>
 
-
   <div>
     <h3>designated desk membership</h3>
     <ul>
@@ -37,109 +38,29 @@
     <p>&nbsp;</p>
   </div>
 
+    <div>
+      <h3>designated suite memebership</h3>
+        <ul>
+          <li>365/24/7 keycard access</li>
+          <li>dedicated suite for your use only</li>
+          <li>conference room usage: full</li>
+          <li>phone booth usage: full</li>
+          <li>kitchen access: full</li>
+          <li><strong>SOLD OUT</strong> (contact us to be on waiting list)</li>
+        </ul>
+    </div>
+    
+    <%= erb :membership_types_table, locals: {member_types: member_types} %>
+    <%= erb :add_member_type_form %>
 
-  <div>
-    <h3>designated suite memebership</h3>
-      <ul>
-        <li>365/24/7 keycard access</li>
-        <li>dedicated suite for your use only</li>
-        <li>conference room usage: full</li>
-        <li>phone booth usage: full</li>
-        <li>kitchen access: full</li>
-        <li><strong>SOLD OUT</strong> (contact us to be on waiting list)</li>
-      </ul>
   </div>
 
-  <div id='reserveRoom'
-     <h3>Reserve a confrence room</h3>
-     <form action='/reservation' method='POST'>
-        <p>Date: <input type='text' name='reservations[date]' class='date-pick'></p>
-        <p>Time:</p>
-        <select name='reservations[hour]'>
-          <%hours = Array(1..12)%>
-          <%hours.each do |hour|%>
-            <option name='reservations[hour]'><%=hour%></option>
-          <% end %>
-        </select>
-        <select name='reservations[minute]'>
-          <%minutes = [00, 15, 30, 45]%>
-          <%minutes.each do |minute|%>
-            <option name='reservations[minute]'><%=minute%></option>
-          <% end %>
-        </select>
-        <select name='reservations[am_pm]'
-          <option name='reservations[am_pm]'>am</option>
-          <option name='reservations[am_pm]'>pm</option>
-        </select>
-        <p>Party Size:</p>
-        <select name='reservations[party_size]'>
-          <%size = Array(1..20)%>
-          <%size.each do |number|%>
-            <option name='reservations[party_size]'><%=number%></option>
-          <% end %>
-        </select>
-        <input type='submit'/>
-      </form></br></br>
-  </div>
+  <%= erb :reserve_room_form %>
+  <%= erb :current_reservation_list, locals: {reservations: reservations} %>
+
 </div><!-- .entry-content -->
 </div><!-- #post-## -->
 
-<div id="comments">
-  <p class="nocomments">Comments are closed.</p>
-</div><!-- #comments -->
-<% if member_types.empty? %>
-  <p>There are no reservations yet.</p>
-<% else %>
-<table style="width: 40%; border: 1px solid;">
-  <tbody>
-    <style>
-      th {
-        padding: 3px;
-        border: 1px solid;
-      }
-      td {
-        padding: 3px;
-        border: 1px solid;
-        text-align: center;
-      }
-    </style>
-    <tr style="border-bottom: 2px solid black; background-color: #ddd;">
-      <th>ID</th>
-      <th>Name</th>
-      <th>Total Seats</th>
-    </tr>
-    <% member_types.each do |type| %>
-      <tr>
-        <td><%= type.id %></td>
-        <td><%= type.name %></td>
-        <td><%= type.total_seats %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-<% end %>
-  <% if admin? %>
-    <form action='/pricing' method='POST' style='float: left;'>
-      <h2>[Add a new membership type]</h2><br/>
-      <strong>Name: </strong><br><input type='text' name='types[name]'/><br/>
-      <strong>Total Seats: </strong><br><input type='text' name='types[total_seats]'/><br/>
-      <input type='submit' value='Add Option'/>
-    </form>
-    <div id='currentReservations' style='position:right;float:right;'>
-      <h2>Current reservations</h2>
-      <% reservations.each do |reservation| %>
-        <ul>
-          <li>Reservation Date: <%= "#{reservation.date}" %>
-          <li>Time: <%= "#{reservation.hour}:#{reservation.minute} #{reservation.am_pm}" %>
-          <li>Party Size: <%= "#{reservation.party_size}" %>
-        </ul>
-      <form action='/<%= reservation[:id] %>/reservation/delete' method='POST'>
-        <input type="hidden" name="_method" value="DELETE">
-        <input type='submit' value="Deny Reservation"/>
-      </form>
-    </div>
-    <% end %>
-  <% end %>
       </div><!-- #content -->
     </div><!-- #container -->
 
