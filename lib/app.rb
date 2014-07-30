@@ -7,7 +7,6 @@ require 'pony'
 require 'mail'
 require 'contact'
 require 'pry'
-#
 
 class UncubedApp < Sinatra::Base
   set :method_override, true
@@ -22,8 +21,8 @@ class UncubedApp < Sinatra::Base
   end
 
   configure do
-    set    :username, 'admin'
-    set    :password, 'omg'
+    set :username, 'admin'
+    set :password, 'omg'
   end
 
 #############( INDEX )#############
@@ -39,7 +38,7 @@ class UncubedApp < Sinatra::Base
 
   post '/add_content' do
     Database.add_content(params[:content])
-    redirect to('/')
+    redirect '/'
   end
 
   get '/pages/:page/edit' do |page|
@@ -49,7 +48,7 @@ class UncubedApp < Sinatra::Base
 
   put '/pages/:page/edit' do |page|
     Database.edit_content(page, params[:content])
-    redirect to('/')
+    redirect '/'
   end
 
 ##########( LOGIN/LOGOUT )##########
@@ -66,7 +65,7 @@ class UncubedApp < Sinatra::Base
   post '/login' do
     if params[:username] == settings.username && params[:password] == settings.password
       session[:admin] = true
-      redirect to('/')
+      redirect '/'
     else
       erb :login
     end
@@ -74,7 +73,7 @@ class UncubedApp < Sinatra::Base
 
   get '/logout' do
     session.clear
-    redirect to('/')
+    redirect '/'
   end
 
 ###############( MEMBERS LOGIN) ##################
@@ -90,8 +89,8 @@ class UncubedApp < Sinatra::Base
 
   post '/member_login' do
     if params[:username] == settings.username && params[:password] == settings.password
-      session[:admin] = true
-      redirect to('/event_form')
+      session[:admin]    = true
+      redirect '/event_form'
     else
       erb :member_login
     end
@@ -106,12 +105,15 @@ class UncubedApp < Sinatra::Base
   get '/pricing' do
     member_types = MemberType.all
     reservations = Reservation.all
-    content = Database.find_page_content('pricing')
-    erb :pricing, locals: {member_types: member_types, reservations: reservations, content: content[:id]}
+    content      = Database.find_page_content('pricing')
+    erb :pricing, locals: { member_types: member_types, 
+                            reservations: reservations, 
+                            content: content[:id]
+                          }
   end
 
   post '/pricing' do
-    Database.membership_types.insert(:name => params[:types][:name],
+    Database.membership_types.insert(:name        => params[:types][:name],
                                      :total_seats => params[:types][:total_seats]
                                     )
     redirect to('/pricing')
@@ -124,24 +126,24 @@ class UncubedApp < Sinatra::Base
 
   post '/reservation' do
     Database.reservations.insert(
-                                 :date   => params[:reservations][:date],
-                                 :hour   => params[:reservations][:hour],
-                                 :minute => params[:reservations][:minute],
-                                 :am_pm  => params[:reservations][:am_pm],
+                                 :date       => params[:reservations][:date],
+                                 :hour       => params[:reservations][:hour],
+                                 :minute     => params[:reservations][:minute],
+                                 :am_pm      => params[:reservations][:am_pm],
                                  :party_size => params[:reservations][:party_size]
                                 )
-
-    # reservations = Reservation.all
-    # erb :pricing, locals: {reservations: reservations}
     redirect to('/pricing')
   end
 
 ##########( MEMBERSHIPS/MEMBERS )##########
   get '/members' do
-    members = Member.all
-    member_types = MemberType.all
+    members            = Member.all
+    member_types       = MemberType.all
     members_with_types = Database.members_with_types
-    erb :members, locals: {members: members, member_types: member_types, members_with_types: members_with_types.to_a}
+    erb :members, locals: { members: members, 
+                            member_types: member_types, 
+                            members_with_types: members_with_types.to_a
+                          }
   end
 
   post '/members' do
@@ -203,7 +205,11 @@ class UncubedApp < Sinatra::Base
                             :location => params[:event][:location],
                             :details  => params[:event][:details]
                           )
-    redirect '/social'
+    redirect '/event_confirmation'
+  end
+
+  get '/event_confirmation' do
+    erb :event_confirmation
   end
 
 ############( NEARBY )#############
