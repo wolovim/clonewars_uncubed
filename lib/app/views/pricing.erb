@@ -1,54 +1,22 @@
 <div style='float: left; width: 60%'>
   <div style='float: left; width: 50%'>
-  <h1>Pricing</h1>
-  <p>&nbsp;</p>
-  <div id="pricingDescription">
-    Whether you are an independent contractor or a
-    business looking to expand your workspace options,
-    we have a plan designed for you.
-    <div id='contactUsLink'><a href='/contact-us'>Contact us</a> to see what Uncubed is all about!</div>
-  </div>
-  <h3>OPEN DESK MEMBERSHIP</h3>
-  <div>
-    <ul>
-      <li>Mon-Fri / 730-530 keycard access</li>
-      <li>use any available open area desk</li>
-      <li>each seat has monitor available</li>
-      <li>conference room usage: not included</li>
-      <li>phone booth usage: full</li>
-      <li>kitchen access: full</li>
-      <li>$150/month per member</li>
-      <li><strong>SOLD OUT</strong> (contact us to be on waiting list)</li>
-    </ul>
-  <p>&nbsp;</p>
-  </div>
-
-  <div>
-    <h3>DESIGNATED DESK MEMBERSHIP</h3>
-    <ul>
-      <li>365/24/7 keycard access</li>
-      <li>dedicated desk for your use only</li>
-      <li>GeekDesk (adjustable for sitting or standing) provided</li>
-      <li>conference room usage: limited</li>
-      <li>phone booth usage: full</li>
-      <li>kitchen access: full</li>
-      <li>$395/month</li>
-      <li><strong>SOLD OUT</strong> (contact us to be on waiting list)</li>
-    </ul>
-    <p>&nbsp;</p>
-  </div>
-
-    <div>
-      <h3>DESIGNATED SUITE MEMBERSHIP</h3>
-        <ul>
-          <li>365/24/7 keycard access</li>
-          <li>dedicated suite for your use only</li>
-          <li>conference room usage: full</li>
-          <li>phone booth usage: full</li>
-          <li>kitchen access: full</li>
-          <li><strong>SOLD OUT</strong> (contact us to be on waiting list)</li>
-        </ul>
-    </div>
+    <!-- Display Title -->
+    <% if content[:page] %>
+      <% if admin? %>
+        <form action='/pages/<%= content[:page] %>/edit' method=GET>
+          <input type='submit' value="Edit Content">
+        </form>
+      <% end %>
+      <h1><%= content[:title] %></h1>
+    <% else %>
+      <p>No 'title' in DB</p>
+    <% end %>
+    <!-- Display Body -->
+    <% if content[:page] %>
+      <%= content[:body] %>
+    <% else %>
+      <p>No 'body' in DB</p>
+    <% end %>
 
     <%= erb :membership_types_table, locals: {member_types: member_types} %>
     <%= erb :add_member_type_form %>

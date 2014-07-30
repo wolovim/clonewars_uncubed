@@ -1,11 +1,4 @@
 <form action='/pages/<%= content[:page] %>/edit' method='POST' style="float: left; width: 60%;">
-  <p>
-    <% if content[:id] %>
-      Edit Member:
-    <% else %>
-      Your Idea:
-    <% end %>
-  </p>
   <% if content[:id] %>
     <input type="hidden" name="_method" value="PUT" />
   <% end %>

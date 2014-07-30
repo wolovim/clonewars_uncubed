@@ -90,7 +90,7 @@ class UncubedApp < Sinatra::Base
 
   post '/member_login' do
     if params[:username] == settings.username && params[:password] == settings.password
-      session[:admin] = 'hello'
+      session[:admin] = true
       redirect to('/event_form')
     else
       erb :member_login
@@ -101,7 +101,8 @@ class UncubedApp < Sinatra::Base
   get '/pricing' do
     member_types = MemberType.all
     reservations = Reservation.all
-    erb :pricing, locals: {member_types: member_types, reservations: reservations}
+    content = Database.find_page_content('pricing')
+    erb :pricing, locals: {member_types: member_types, reservations: reservations, content: content[:id]}
   end
 
   post '/pricing' do
@@ -110,7 +111,6 @@ class UncubedApp < Sinatra::Base
                                     )
     redirect to('/pricing')
   end
-
 
   delete '/:id/reservation/delete' do |id|
     Database.delete_reservation(id)
