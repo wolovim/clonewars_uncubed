@@ -1,0 +1,40 @@
+<div id='reserveRoom' >
+  <style>
+    #reserveRoom {
+      float: right;
+      width: 35%;
+      margin-top: 40px;
+      border: 2px solid;
+      padding: 10px;
+    }
+  </style>
+   <h2><strong>Reserve a conference room</strong></h2><br/>
+   <form action='/reservation' method='POST'>
+      <p>Date: <input type='text' name='reservations[date]' class='date-pick'></p>
+      <p>Time:</p>
+      <select name='reservations[hour]'>
+        <%hours = Array(1..12)%>
+        <%hours.each do |hour|%>
+          <option name='reservations[hour]'><%=hour%></option>
+        <% end %>
+      </select>
+      <select name='reservations[minute]'>
+        <%minutes = [00, 15, 30, 45]%>
+        <%minutes.each do |minute|%>
+          <option name='reservations[minute]'><%=minute%></option>
+        <% end %>
+      </select>
+      <select name='reservations[am_pm]'
+        <option name='reservations[am_pm]'>am</option>
+        <option name='reservations[am_pm]'>pm</option>
+      </select><br/></br/>
+      <p>Party Size:</p>
+      <select name='reservations[party_size]'>
+        <%size = Array(1..20)%>
+        <%size.each do |number|%>
+          <option name='reservations[party_size]'><%=number%></option>
+        <% end %>
+      </select><br/><br/>
+      <input type='submit'/><br/><br/>
+    </form>
+</div>

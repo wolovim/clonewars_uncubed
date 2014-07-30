@@ -5,7 +5,6 @@ class UserCreatesAMember < FeatureTest
     visit '/'
     assert_equal 200, page.status_code
     assert page.has_css?('#post-11')
-    assert page.has_css?('.entry-content')
   end
 
   def test_a_user_can_login_as_admin
@@ -16,7 +15,6 @@ class UserCreatesAMember < FeatureTest
     click_button('wp-submit')
     #gets redirected to '/'
     assert page.has_css?('#post-11')
-    assert page.has_css?('.entry-content')
   end
 
   def test_a_user_can_create_a_member

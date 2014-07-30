@@ -28,7 +28,28 @@ class UncubedApp < Sinatra::Base
 
 #############( INDEX )#############
   get '/' do
-    erb :index
+    content = Database.find_page_content('index')
+    erb :index, locals: {content: content[:id]}
+  end
+
+##########( CONTENT MGMT )##########
+  get '/add_content' do
+    erb :add_content
+  end
+
+  post '/add_content' do
+    Database.add_content(params[:content])
+    redirect to('/')
+  end
+
+  get '/pages/:page/edit' do |page|
+    content = Database.find_page_content(page)
+    erb :content_editor, locals: {content: content[:id]}
+  end
+
+  put '/pages/:page/edit' do |page|
+    Database.edit_content(page, params[:content])
+    redirect to('/')
   end
 
 ##########( LOGIN/LOGOUT )##########
@@ -85,7 +106,8 @@ class UncubedApp < Sinatra::Base
   get '/pricing' do
     member_types = MemberType.all
     reservations = Reservation.all
-    erb :pricing, locals: {member_types: member_types, reservations: reservations}
+    content = Database.find_page_content('pricing')
+    erb :pricing, locals: {member_types: member_types, reservations: reservations, content: content[:id]}
   end
 
   post '/pricing' do
@@ -95,6 +117,10 @@ class UncubedApp < Sinatra::Base
     redirect to('/pricing')
   end
 
+  delete '/:id/reservation/delete' do |id|
+    Database.delete_reservation(id)
+    redirect to ('/pricing')
+  end
 
   post '/reservation' do
     Database.reservations.insert(

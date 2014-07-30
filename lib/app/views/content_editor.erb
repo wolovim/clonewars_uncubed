@@ -1,0 +1,10 @@
+<form action='/pages/<%= content[:page] %>/edit' method='POST' style="float: left; width: 60%;">
+  <% if content[:id] %>
+    <input type="hidden" name="_method" value="PUT" />
+  <% end %>
+  <h2>[Edit Page Content]</h2><br/>
+  <strong>Page: </strong><%= content[:page] %><br/>
+  <strong>Title: </strong><br/><textarea name='content[title]' rows="3" cols="60"><%= content[:title] %></textarea><br/>
+  <strong>Body: </strong><br/><textarea name='content[body]' rows="20" cols="60"><%= content[:body] %></textarea><br/>
+  <input type="submit">
+</form>

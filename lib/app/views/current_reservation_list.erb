@@ -1,0 +1,23 @@
+<div style='float: right;'>
+  <% if admin? %>
+    <br/>
+    <div id='currentReservations' >
+      <h2>Current reservations</h2>
+      <% if reservations.empty? %>
+        No reservations yet!
+      <% else %>
+        <% reservations.each do |reservation| %>
+          <ul>
+            <li>Reservation Date: <%= "#{reservation.date}" %>
+            <li>Time: <%= "#{reservation.hour}:#{reservation.minute} #{reservation.am_pm}" %>
+            <li>Party Size: <%= "#{reservation.party_size}" %>
+          </ul>
+          <form action='/<%= reservation[:id] %>/reservation/delete' method='POST'>
+            <input type="hidden" name="_method" value="DELETE">
+            <input type='submit' value="Deny Reservation"/>
+          </form><br/><br/>
+        <% end %>
+      <% end %>
+    </div>
+  <% end %>
+</div>
