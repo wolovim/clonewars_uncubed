@@ -1,4 +1,4 @@
-require_relative "./feature_test_helper"
+require_relative "feature_test_helper"
 
 class UserCreatesAMember < FeatureTest
   def test_a_user_can_see_the_index
