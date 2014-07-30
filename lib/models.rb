@@ -1,120 +1,61 @@
 require 'rubygems'
 require 'sequel'
+require_relative 'configure_database'
 
-class Database
+class DatabaseRepository
   attr_reader :connection
 
-  if ENV['RUBY_ENV'] == "test"
-    @connection = Sequel.sqlite('test_database.db')
-  else
-    @connection = Sequel.sqlite('database.db')
+  def initialize(connection)
+    @connection = connection
   end
 
-  #
-  # def self.production_connection
-  #   puts "Setting up PRODUCTION environment database..."
-  #   Sequel.sqlite('database.db')
-  # end
-  #
-  # def test_connection
-  #   puts "Setting up TEST environment database..."
-  #   Sequel.sqlite('test_database.db')
-  # end
-
-  unless @connection.table_exists? (:members)
-    @connection.create_table :members do
-      primary_key   :id
-      integer       :membership_type_id
-      string        :first_name, :null => false
-      string        :last_name
-      string        :phone_number
-      string        :email_address
-      string        :company
-      timestamp     :joined_at
-    end
+  def events
+    connection[:events]
   end
 
-  unless @connection.table_exists? (:member_types)
-    @connection.create_table :member_types do
-      primary_key   :id
-      string        :name
-      integer       :total_seats
-    end
+  def events
+    connection[:events]
   end
 
-  unless @connection.table_exists? (:reservations)
-    @connection.create_table :reservations do
-      primary_key   :id
-      string        :date
-      integer       :hour
-      integer       :minute
-      string        :am_pm
-      integer       :party_size
-    end
+  def find_page_content(page)
+    connection[:contents].where(:page => page)
   end
 
-  unless @connection.table_exists? (:events)
-    @connection.create_table :events do
-      primary_key   :id
-      string        :company
-      string        :title
-      string        :date
-      integer       :time
-      string        :am_pm
-      string        :location
-      string        :details
-    end
+  def add_content(data)
+    connection[:contents].insert(:page => data[:page],
+
+  def find_page_content(page)
+    connection[:contents].where(:page => page)
   end
 
-  unless @connection.table_exists? (:contents)
-    @connection.create_table :contents do
-      primary_key :id
-      string      :page
-      string      :title
-      string      :body
-    end
-  end
+  def add_content(data)
+    connection[:contents].insert(:page => data[:page],
 
-  def self.events
-    @connection[:events]
-  end
-
-  def self.find_page_content(page)
-    @connection[:contents].where(:page => page)
-  end
-
-  def self.add_content(data)
-    @connection[:contents].insert(:page => data[:page],
-                    :title => data[:title],
-                    :body => data[:body]
-                    )
-  end
-
-  def self.edit_content(page, data)
-    @connection[:contents].where(:page => page)
+  def edit_content(page, data)
+    connection[:contents].where(:page => page)
                   .update(:title => data[:title],
                           :body => data[:body]
                           )
   end
 
-  def self.membership
-    @connection[:members]
+  def membership
+    connection[:members]
   end
 
-  def self.membership_types
-    @connection[:member_types]
+  def membership_types
+    connection[:member_types]
   end
 
-  def self.members_with_types
-    @connection[:member_types].join(:members, :membership_type_id => :id)
+  def members_with_types
+    connection[:member_types].join(:members, :membership_type_id => :id)
   end
 
-  def self.reservations
-    @connection[:reservations]
+  def reservations
+    connection[:reservations]
   end
 
-  def self.add_member(data)
-    @connection[:members].insert(:first_name => data[:first_name],
+  def add_member(data)
+    connection[:members].insert(:first_name => data[:first_name],
                    :last_name => data[:last_name],
                    :email_address => data[:email_address],
                    :phone_number => data[:phone_number],
@@ -123,20 +64,20 @@ class Database
                    :joined_at => Time.now)
   end
 
-  def self.delete_member(id)
-    @connection[:members].where(:id => id).delete
+  def delete_member(id)
+    connection[:members].where(:id => id).delete
   end
 
-  def self.delete_reservation(id)
-    @connection[:reservations].where(:id => id).delete
+  def delete_reservation(id)
+    connection[:reservations].where(:id => id).delete
   end
 
-  def self.find_member(id)
-    @connection[:members].where(:id => id)
+  def find_member(id)
+    connection[:members].where(:id => id)
   end
 
-  def self.update_member(id, data)
-    @connection[:members].where(:id => id)
+  def update_member(id, data)
+    connection[:members].where(:id => id)
         .update(:company => data[:company],
                 :membership_type_id => data[:membership_type_id],
                 :first_name => data[:first_name],
@@ -148,22 +89,10 @@ class Database
   end
 end
 
-class Event < Sequel::Model(:events)
-  # Event Model
-end
+connection = ConfigureDatabase.new.call
+Database   = DatabaseRepository.new(connection)
 
-class Member < Sequel::Model(:members)
-  # Member Model
-end
-
-class MemberType < Sequel::Model(:member_types)
-  # MemberType Model
-end
-
-class Reservation < Sequel::Model(:reservations)
-  #Reservation Model
-end
-
-class Content < Sequel::Model(:contents)
-  #Content Model
-end
+require_relative 'models/members'
+require_relative 'models/member_type'
+require_relative 'models/content'
+require_relative 'models/reservation'

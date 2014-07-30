@@ -180,10 +180,6 @@ class UncubedApp < Sinatra::Base
 
 ##########( SOCIAL/EVENTS )##########
 
-  # get '/social' do
-  #   erb :social, locals: {events: EventStore.all, event: Event.new(params)}
-  # end
-
   get '/social' do
     events = Event.all
     erb :social, locals: {events: events}

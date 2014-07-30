@@ -2,3 +2,5 @@
 /vendor/bundle/
 /database.db
 /test_database.db
+/db/ideabox
+.sass-cache
