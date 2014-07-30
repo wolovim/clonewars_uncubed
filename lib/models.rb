@@ -21,15 +21,13 @@ class DatabaseRepository
     connection[:contents].where(:page => page)
   end
 
-  def add_content(data)
-    connection[:contents].insert(:page => data[:page],
-
   def find_page_content(page)
     connection[:contents].where(:page => page)
   end
 
   def add_content(data)
     connection[:contents].insert(:page => data[:page],
+  end
 
   def edit_content(page, data)
     connection[:contents].where(:page => page)
