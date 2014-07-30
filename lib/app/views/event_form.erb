@@ -1,24 +1,5 @@
-
-
-
-<!-- </ul>
-</li>
-<li id="member" class="widget-container">
-  <h3 class="widget-title">Members Login:</h3>
-  <ul>
-    <% if !member? %> 
-      <li><a href="/member_login">Log in</a></li>
-    <% else%>
-      <li><a href="/member_logout">Log out</a></li>
-    <% end %>
-  </ul>
-</li>
-</ul> -->
-
-
-
 <% if member? %>
-
+<div>
 <h1>Tell us about your event</h1>
 
   <form action="/social" method="POST" name="events">
@@ -26,10 +7,16 @@
     <br/>
     <input type="text" placeholder="Event title" name="event[title]"/>
     <br/>
-    <!-- <input type=????? (date box) placeholder="Date" name="event[date]"/> -->
     <input type='text' placeholder="Date" class='date-pick'>
     <br/>
-    <input type=????? (time thing?) placeholder="time" name="event[time]"
+    <!-- <input type=????? (time thing?) placeholder="time" name="event[time]" -->
+    Time:
+    <select name='reservations[hour]'>
+      <%hours = Array(1..12)%>
+      <%hours.each do |hour|%>
+        <option name='reservations[hour]'><%=hour%></option>
+      <% end %>
+    </select>
     Location:
     <input type="checkbox"/>Uncubed
     <input type="checkbox"/>Other:<input type="text" name="event[location]"/>
@@ -38,14 +25,5 @@
     <br/>
     <input type="submit" name="Submit"/>
   </form>
-
 <% end %>
-<!-- Company
-title
-date
-location
-description
-
-Take this info
-Put it into a database (like ideabox)
-Then display it formatted on the page -->
+</div>

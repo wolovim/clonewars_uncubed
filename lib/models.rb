@@ -50,16 +50,20 @@ class Database
     end
   end
 
-  def self.events
-    DB[:events]
-  end
-
   unless DB.table_exists? (:contents)
     DB.create_table :contents do
       primary_key :id
       string      :title
       string      :body
     end
+  end
+
+  def self.reservations
+    DB[:reservations]
+  end
+
+  def self.events
+    DB[:events]
   end
 
   def self.membership
@@ -72,10 +76,6 @@ class Database
 
   def self.members_with_types
     DB[:member_types].join(:members, :membership_type_id => :id)
-  end
-
-  def self.reservations
-    DB[:reservations]
   end
 
   def self.add_member(data)
@@ -107,6 +107,10 @@ class Database
                 :id => data[:id]
                 )
   end
+end
+
+class Event < Sequel::Model(:events)
+  # Event Model
 end
 
 class Member < Sequel::Model(:members)

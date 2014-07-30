@@ -69,11 +69,16 @@ class UncubedApp < Sinatra::Base
 
   post '/member_login' do
     if params[:username] == settings.username && params[:password] == settings.password
-      session[:admin] = 'hello'
+      session[:admin] = true
       redirect to('/event_form')
     else
       erb :member_login
     end
+  end
+
+  get '/member_logout' do
+    session.clear
+    redirect '/social'
   end
 
 ############( PRICING )############
@@ -149,14 +154,14 @@ class UncubedApp < Sinatra::Base
   end
 
 ##########( SOCIAL/EVENTS )##########
-  get '/social' do
-    erb :social, locals: {events: EventStore.all, event: Event.new(params)}
-  end
 
-  post '/social' do
-    event_data = Event.new(params[:event]).to_h
-    EventStore.create(event_data)
-    redirect '/social'
+  # get '/social' do
+  #   erb :social, locals: {events: EventStore.all, event: Event.new(params)}
+  # end
+
+  get '/social' do
+    events = Event.all
+    erb :social, locals: {events: events}
   end
 
   get '/event_login' do
@@ -165,6 +170,18 @@ class UncubedApp < Sinatra::Base
 
   get '/event_form' do
     erb :event_form
+  end
+
+  post '/social' do
+    Database.events.insert(
+                            :company  => params[:event][:company],
+                            :title    => params[:event][:title],
+                            :date     => params[:event][:date],
+                            :time     => params[:event][:time],
+                            :location => params[:event][:location],
+                            :details  => params[:event][:details]
+                          )
+    redirect '/social'
   end
 
 ############( NEARBY )#############
