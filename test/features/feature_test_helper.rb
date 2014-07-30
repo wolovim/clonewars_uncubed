@@ -11,5 +11,6 @@ class FeatureTest < Minitest::Test
   def teardown
     Capybara.reset_sessions!
     Capybara.use_default_driver
+    # File.delete(File.expand_path("~/Dropbox/Projects/Turing/clonewars_uncubed/test_database.db"))
   end
 end
