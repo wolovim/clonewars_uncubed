@@ -3,26 +3,23 @@ require 'sequel'
 
 class Database
   attr_reader :connection
-  # Sequel::Model.plugin(:schema)
-  # DB = Sequel.sqlite('database.db')
 
-  # def initialize
   if ENV['RUBY_ENV'] == "test"
-    @connection = Sequel.sqlite('test_database.db') #test_connection
+    @connection = Sequel.sqlite('test_database.db')
   else
-    @connection = production_connection
+    @connection = Sequel.sqlite('database.db')
   end
+
+  #
+  # def self.production_connection
+  #   puts "Setting up PRODUCTION environment database..."
+  #   Sequel.sqlite('database.db')
   # end
-
-  def self.production_connection
-    puts "Setting up PRODUCTION environment database..."
-    Sequel.sqlite('database.db')
-  end
-
-  def test_connection
-    puts "Setting up TEST environment database..."
-    Sequel.sqlite('test_database.db')
-  end
+  #
+  # def test_connection
+  #   puts "Setting up TEST environment database..."
+  #   Sequel.sqlite('test_database.db')
+  # end
 
   unless @connection.table_exists? (:members)
     @connection.create_table :members do
@@ -69,10 +66,6 @@ class Database
     end
   end
 
-  def self.events
-    @connection[:events]
-  end
-
   unless @connection.table_exists? (:contents)
     @connection.create_table :contents do
       primary_key :id
@@ -80,6 +73,10 @@ class Database
       string      :title
       string      :body
     end
+  end
+
+  def self.events
+    @connection[:events]
   end
 
   def self.find_page_content(page)
