@@ -154,8 +154,8 @@ class UncubedApp < Sinatra::Base
   end
 
   delete '/:id' do |id|
-    Database.delete_member(id)
-    redirect to('/members')
+    Database.delete_event(id)
+    redirect to('/social')
   end
 
 ############( GALLERY )###########
@@ -198,6 +198,11 @@ class UncubedApp < Sinatra::Base
                             :details  => params[:event][:details]
                           )
     redirect '/event_confirmation'
+  end
+
+  delete '/:id' do |id|
+    Database.delete_member(id)
+    redirect to('/members')
   end
 
   get '/event_confirmation' do

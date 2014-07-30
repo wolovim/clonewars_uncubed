@@ -2,36 +2,28 @@
   <div style='float: left; width: 50%'>
 
 
-    <!-- Display Title -->
-    <% if content[:page] %>
-      <% if admin? %>
-        <form action='/pages/<%= content[:page] %>/edit' method=GET>
-          <input type='submit' value="Edit Content">
-        </form>
-      <% end %>
-      <h1><%= content[:title] %></h1>
-    <% else %>
-      <p>No 'title' in DB</p>
+  <!-- Display Title -->
+  <% if content[:page] %>
+    <% if admin? %>
+      <form action='/pages/<%= content[:page] %>/edit' method=GET>
+        <input type='submit' value="Edit Content">
+      </form>
     <% end %>
-    <!-- Display Body -->
-    <% if content[:page] %>
-      <%= content[:body] %>
-    <% else %>
-      <p>No 'body' in DB</p>
-    <% end %>
+    <h1><%= content[:title] %></h1>
+  <% else %>
+    <p>No 'title' in DB</p>
+  <% end %>
+  <!-- Display Body -->
+  <% if content[:page] %>
+    <%= content[:body] %>
+  <% else %>
+    <p>No 'body' in DB</p>
+  <% end %>
 
-    <%= erb :membership_types_table, locals: {member_types: member_types} %>
-    <%= erb :add_member_type_form %>
+  <%= erb :membership_types_table, locals: {member_types: member_types} %>
+  <%= erb :add_member_type_form %>
 
-  </div>
+</div>
 
-  <%= erb :reserve_room_form %>
-  <%= erb :current_reservation_list, locals: {reservations: reservations} %>
-
-</div><!-- .entry-content -->
-</div><!-- #post-## -->
-
-      </div><!-- #content -->
-    </div><!-- #container -->
-
-  </div><!-- #main -->
+<%= erb :reserve_room_form %>
+<%= erb :current_reservation_list, locals: {reservations: reservations} %>

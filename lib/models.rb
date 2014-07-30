@@ -13,6 +13,10 @@ class DatabaseRepository
     connection[:events]
   end
 
+  def delete_event(id)
+    connection[:events].where(:id => id).delete
+  end
+
   def find_page_content(page)
     connection[:contents].where(:page => page)
   end

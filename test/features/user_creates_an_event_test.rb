@@ -38,6 +38,16 @@ class UserCreatesAnEvent < FeatureTest
     page.has_content?('Meetup')
     page.has_content?('Programming')
     page.has_link?('Logout')
+
+    	#### now the user can delete their event
+    # visit '/social'
+    # page.has_button?('DELETE EVENT')
+    # assert page.has_content?('Turing')
+    # assert page.has_content?('Meetup')
+    # assert page.has_content?('Programming')
+    # click_button('DELETE EVENT')
+    # refute page.has_content?('Turing')
+    # refute page.has_content?('Meetup')
+    # refute page.has_content?('Programming')
   end
-  
 end

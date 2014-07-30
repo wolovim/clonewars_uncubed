@@ -8,7 +8,7 @@
     <% if member? %>
     <a href="/member_logout" style="float: right">Logout</a>
     <% end %>
-    <hr/>
+  <hr/>
 
   <h1>Upcoming Events</h1>
   <br/>
@@ -24,8 +24,14 @@
      Location: <%= event[:location] %>
             <br/>
       Details: <%= event[:details] %>
-            <br/>
-            <br/>
+        <% if admin? %>
+        <form action='/<%= event[:id] %>' method='POST' style="float: right">
+          <input type="hidden" name="_method" value="DELETE">
+          <input type='submit' value="DELETE EVENT"/>
+        </form>
+        <% end %>
+        <br/>
+        <br/>
       </li>
     <% end %>
   </ul>
