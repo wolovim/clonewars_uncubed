@@ -6,7 +6,6 @@ require_relative 'models'
 require 'pony'
 require 'mail'
 require 'contact'
-require 'events'
 require 'pry'
 
 class UncubedApp < Sinatra::Base
