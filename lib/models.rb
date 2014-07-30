@@ -13,10 +13,6 @@ class DatabaseRepository
     connection[:events]
   end
 
-  def events
-    connection[:events]
-  end
-
   def find_page_content(page)
     connection[:contents].where(:page => page)
   end
@@ -27,6 +23,9 @@ class DatabaseRepository
 
   def add_content(data)
     connection[:contents].insert(:page => data[:page],
+                                 :title => data[:title],
+                                 :body => data[:body]
+                                 )
   end
 
   def edit_content(page, data)
@@ -90,7 +89,9 @@ end
 connection = ConfigureDatabase.new.call
 Database   = DatabaseRepository.new(connection)
 
-require_relative 'models/members'
+require_relative 'models/member'
+require_relative 'models/event'
+require_relative 'models/reservation'
 require_relative 'models/member_type'
 require_relative 'models/content'
 require_relative 'models/reservation'
