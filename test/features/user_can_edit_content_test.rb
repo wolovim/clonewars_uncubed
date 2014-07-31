@@ -21,4 +21,27 @@ class UserCanEditContent < FeatureTest
     assert page.has_content?('Blah')
     # File.delete(File.expand_path("~/Dropbox/Projects/Turing/clonewars_uncubed/test_database.db"))
   end
+
+  def test_an_admin_can_edit_pricing_page_content
+    #User logs in
+    visit '/login'
+    assert_equal 200, page.status_code
+    fill_in('username', with: "admin")
+    fill_in('password', with: "omg")
+    click_button('wp-submit')
+
+    #User clicks to edit content
+    visit '/pricing'
+    assert_equal 200, page.status_code
+    # refute page.has_content?('Blah')
+    click_button('Edit Content')
+
+    #On edit page
+    assert_equal 200, page.status_code
+    fill_in("content[title]", with: "Pricing Blah")
+    click_button("Update Content")
+    visit '/pricing'
+    assert page.has_content?('Blah')
+    # File.delete(File.expand_path("~/Dropbox/Projects/Turing/clonewars_uncubed/test_database.db"))
+  end
 end
