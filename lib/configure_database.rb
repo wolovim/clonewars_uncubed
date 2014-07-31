@@ -71,8 +71,6 @@ class ConfigureDatabase # sets up database for application on launch
         string      :title
         string      :body
       end
-
-Pricing.new.connection 
       connection[:contents].insert(:page => "pricing",
                                    :title => "Pricing",
                                    :body => "<div>

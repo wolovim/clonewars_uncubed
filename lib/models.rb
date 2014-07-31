@@ -9,85 +9,115 @@ class DatabaseRepository # holds methods for database interactions
     @connection = connection
   end
 
+  ########( CONTENTS )########
+  def contents
+    connection[:contents]
+  end
+
+  def find_page_content(page)
+    contents.where(:page => page)
+  end
+
+  def find_page_content(page)
+    contents.where(:page => page)
+  end
+
+  def add_content(data)
+    contents.insert(:page  => data[:page],
+                    :title => data[:title],
+                    :body  => data[:body]
+                    )
+  end
+
+  def edit_content(page, data)
+    contents.where(:page => page).update(:title  => data[:title],
+                                         :body   => data[:body]
+                                         )
+  end
+
+  ########( EVENTS )########
   def events
     connection[:events]
   end
 
+  def add_event(data)
+    events.insert(:company  => data[:company],
+               :title       => data[:title],
+               :date        => data[:date],
+               :time        => data[:time],
+               :location    => data[:location],
+               :details     => data[:details]
+               )
+  end
+
   def delete_event(id)
-    connection[:events].where(:id => id).delete
+    events.where(:id => id).delete
   end
 
-  def find_page_content(page)
-    connection[:contents].where(:page => page)
-  end
-
-  def find_page_content(page)
-    connection[:contents].where(:page => page)
-  end
-
-  def add_content(data)
-    connection[:contents].insert(:page => data[:page],
-                                 :title => data[:title],
-                                 :body => data[:body]
-                                 )
-  end
-
-  def edit_content(page, data)
-    connection[:contents].where(:page => page)
-                  .update(:title => data[:title],
-                          :body => data[:body]
-                          )
-  end
-
+  ########( MEMBERS )########
   def membership
     connection[:members]
   end
 
+  def find_member(id)
+    membership.where(:id => id)
+  end
+
+  def add_member(data)
+    membership.insert(:first_name      => data[:first_name],
+                   :last_name          => data[:last_name],
+                   :email_address      => data[:email_address],
+                   :phone_number       => data[:phone_number],
+                   :company            => data[:company],
+                   :membership_type_id => data[:membership_type_id],
+                   :joined_at          => Time.now
+                   )
+  end
+
+  def update_member(id, data)
+    membership.where(:id  => id)
+        .update(:company            => data[:company],
+                :membership_type_id => data[:membership_type_id],
+                :first_name         => data[:first_name],
+                :last_name          => data[:last_name],
+                :email_address      => data[:email_address],
+                :joined_at          => data[:joined_at],
+                :id                 => data[:id]
+                )
+  end
+
+  def delete_member(id)
+    membership.where(:id => id).delete
+  end
+
+  ########( MEMBER TYPES )########
   def membership_types
     connection[:member_types]
   end
 
   def members_with_types
-    connection[:member_types].join(:members, :membership_type_id => :id)
+    membership_types.join(:members, :membership_type_id => :id)
   end
 
+  ########( RESERVATIONS )########
   def reservations
     connection[:reservations]
   end
 
-  def add_member(data)
-    connection[:members].insert(:first_name => data[:first_name],
-                   :last_name => data[:last_name],
-                   :email_address => data[:email_address],
-                   :phone_number => data[:phone_number],
-                   :company => data[:company],
-                   :membership_type_id => data[:membership_type_id],
-                   :joined_at => Time.now)
-  end
-
-  def delete_member(id)
-    connection[:members].where(:id => id).delete
+  def add_reservation(data)
+    reservations.insert(:date   => data[:date],
+                    :hour       => data[:hour],
+                    :minute     => data[:minute],
+                    :am_pm      => data[:am_pm],
+                    :party_size => data[:party_size]
+                    )
   end
 
   def delete_reservation(id)
-    connection[:reservations].where(:id => id).delete
+    reservations.where(:id => id).delete
   end
 
-  def find_member(id)
-    connection[:members].where(:id => id)
-  end
 
-  def update_member(id, data)
-    connection[:members].where(:id => id)
-        .update(:company => data[:company],
-                :membership_type_id => data[:membership_type_id],
-                :first_name => data[:first_name],
-                :last_name => data[:last_name],
-                :email_address => data[:email_address],
-                :joined_at => data[:joined_at],
-                :id => data[:id]
-                )
-  end
 end
 
 connection = ConfigureDatabase.new.call

@@ -120,13 +120,7 @@ class UncubedApp < Sinatra::Base # manages routes for application
   end
 
   post '/reservation' do
-    Database.reservations.insert(
-                                 :date       => params[:reservations][:date],
-                                 :hour       => params[:reservations][:hour],
-                                 :minute     => params[:reservations][:minute],
-                                 :am_pm      => params[:reservations][:am_pm],
-                                 :party_size => params[:reservations][:party_size]
-                                )
+    Database.add_reservation(params[:reservations])
     redirect to('/pricing')
   end
 
@@ -189,14 +183,7 @@ class UncubedApp < Sinatra::Base # manages routes for application
   end
 
   post '/social' do
-    Database.events.insert(
-                            :company  => params[:event][:company],
-                            :title    => params[:event][:title],
-                            :date     => params[:event][:date],
-                            :time     => params[:event][:time],
-                            :location => params[:event][:location],
-                            :details  => params[:event][:details]
-                          )
+    Database.add_event(params[:event])
     redirect '/event_confirmation'
   end
 
