@@ -13,4 +13,7 @@ class FeatureTest < Minitest::Test
     Capybara.use_default_driver
     # File.delete(File.expand_path("~/Dropbox/Projects/Turing/clonewars_uncubed/test_database.db"))
   end
+  def require_js
+    Capybara.current_driver = :selenium
+  end
 end
