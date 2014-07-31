@@ -45,7 +45,7 @@
                   <input type="submit" value="√"/>
                 </form>
               </td>
-              <td>
+              <%= "<td id='del-#{member[:id]}'>" %>
                 <form action='/<%= member[:id] %>' method='POST' style="display: inline">
                   <input type="hidden" name="_method" value="DELETE">
                   <input type='submit' value="X"/>

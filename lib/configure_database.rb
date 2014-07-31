@@ -8,10 +8,10 @@ class ConfigureDatabase
   private
 
   def establish_connection
-    if ENV['RUBY_ENV'] == "test"
-      connection = Sequel.sqlite('test_database.db')
-    else
+    if ENV['RUBY_ENV'] == "prod"
       connection = Sequel.sqlite('database.db')
+    else
+      connection = Sequel.sqlite('test_database.db')
     end
   end
 
