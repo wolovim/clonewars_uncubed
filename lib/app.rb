@@ -76,7 +76,7 @@ class UncubedApp < Sinatra::Base # manages routes for application
     redirect '/'
   end
 
-###############( MEMBERS LOGIN) ##################
+############( MEMBERS LOGIN)#############
   helpers do
     def member?
       session[:admin]
@@ -168,7 +168,6 @@ class UncubedApp < Sinatra::Base # manages routes for application
   end
 
 ##########( SOCIAL/EVENTS )##########
-
   get '/social' do
     events = Event.all
     erb :social, locals: {events: events}

@@ -19,7 +19,7 @@ class AdminCanEditAMember < FeatureTest
       click_button('Add Member')
       assert page.has_content?("Shimmy")
       assert page.has_content?("Zonk, Inc")
-      admin can edit a member
+      # admin can edit a member
       # click_button('√')
       # assert_equal 200, page.status_code
       # assert page.has_css?('#admin_member_form')

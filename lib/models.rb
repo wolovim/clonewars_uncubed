@@ -116,8 +116,6 @@ class DatabaseRepository # holds methods for database interactions
   def delete_reservation(id)
     reservations.where(:id => id).delete
   end
-
-
 end
 
 connection = ConfigureDatabase.new.call
