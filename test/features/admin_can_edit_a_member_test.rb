@@ -1,5 +1,5 @@
 require_relative 'feature_test_helper'
-  class AdminCanEditAMember < FeatureTest
+  class AdminCanEditAMember < FeatureTest  
     visit '/login'
     fill_in('username', with: 'admin')
     fill_in('password', with: 'omg')
