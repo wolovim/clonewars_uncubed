@@ -1,4 +1,5 @@
 require_relative 'feature_test_helper'
+
 class AdminCanEditAMember < FeatureTest
     def test_admin_can_edit_a_member
       visit '/login'
@@ -32,4 +33,5 @@ class AdminCanEditAMember < FeatureTest
       # visit '/members'
       # assert page.has_content?('Donk')
     end
+
 end
