@@ -2,7 +2,7 @@ require 'rubygems'
 require 'sequel'
 require_relative 'configure_database'
 
-class DatabaseRepository
+class DatabaseRepository # holds methods for database interactions
   attr_reader :connection
 
   def initialize(connection)

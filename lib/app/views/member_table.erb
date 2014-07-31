@@ -1,0 +1,53 @@
+<table style="width: 60%; border: 1px solid;">
+  <tbody>
+    <tr style="border-bottom: 2px solid black; background-color: #ddd;">
+      <style type="text/css">
+        th {
+          padding: 3px;
+          border: 1px solid;
+        }
+        td {
+          padding: 3px;
+          border: 1px solid;
+          text-align: center;
+        }
+      </style>
+      <th>Company</th>
+      <th>Membership</th>
+      <th>First Name</th>
+      <th>Last Name</th>
+      <th>Email</th>
+      <th>Join Date</th>
+      <th>ID</th>
+      <% if admin? %>
+        <th>Edit?</th>
+        <th>Remove?</th>
+      <% end %>
+    </tr>
+    <% members_with_types.each do |member| %>
+      <tr>
+        <td><%= member[:company] %></td>
+        <td><%= member[:name] %></td>
+        <td><%= member[:first_name] %></td>
+        <td><%= member[:last_name] %></td>
+        <td><%= member[:email_address] %></td>
+        <td><%= member[:joined_at].to_date if member[:joined_at] %></td>
+        <td><%= member[:id] %></td>
+        <% if admin? %>
+          <td>
+            <form action='/<%= member[:id] %>/edit' method='GET' style="display: inline">
+              <input type="hidden" name "_method" value="PUT">
+              <input type="submit" value="√"/>
+            </form>
+          </td>
+          <%= "<td id='del-#{member[:id]}'>" %>
+            <form action='/<%= member[:id] %>' method='POST' style="display: inline">
+              <input type="hidden" name="_method" value="DELETE">
+              <input type='submit' value="X"/>
+            </form>
+          </td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

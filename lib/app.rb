@@ -8,7 +8,7 @@ require 'mail'
 require 'contact'
 require 'pry'
 
-class UncubedApp < Sinatra::Base
+class UncubedApp < Sinatra::Base # manages routes for application
   set :method_override, true
   set :sessions => true
   set :root, "lib/app"

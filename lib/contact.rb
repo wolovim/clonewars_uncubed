@@ -1,4 +1,4 @@
-class Email
+class Email # uses Pony gem to configure and send email for contact-us
   def initialize(params)
     Pony.mail(
         :to      => "clonewars.uncubed@gmail.com",
