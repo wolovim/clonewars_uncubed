@@ -1,4 +1,4 @@
-class ConfigureDatabase
+class ConfigureDatabase # sets up database for application on launch
   def call
     connection = establish_connection
     create_tables_for(connection)
@@ -71,6 +71,8 @@ class ConfigureDatabase
         string      :title
         string      :body
       end
+
+Pricing.new.connection 
       connection[:contents].insert(:page => "pricing",
                                    :title => "Pricing",
                                    :body => "<div>
