@@ -10,6 +10,9 @@ gem 'pony'
 gem 'mail', '~> 2.5.4'
 gem 'events'
 gem 'contact'
+gem 'cane'
+gem 'reek'
+gem 'rake'
 
 group :development do
   gem 'shotgun'
