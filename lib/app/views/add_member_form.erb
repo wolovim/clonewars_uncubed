@@ -1,0 +1,12 @@
+<% if admin? %>
+  <form action='/members' method='POST' style='float: left;' id="admin_member_form">
+    <h2>[Input a new member]</h2><br/>
+    <strong>Company: </strong><br><input type='text' name='member[company]'/><br/>
+    <strong>Member Type: </strong><br><input type='text' name='member[membership_type_id]'/><br/>
+    <strong>First Name:</strong><br><input type='text' name='member[first_name]'/><br/>
+    <strong>Last Name: </strong><br><input type='text' name='member[last_name]'/><br/>
+    <strong>Email: </strong><br><input type='text' name='member[email_address]'/><br/>
+    <strong>Phone Number: </strong><br><input type='text' name='member[phone_number]'/><br/></br>
+    <input type='submit' value='Add Member'/>
+  </form>
+<% end %>

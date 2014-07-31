@@ -3,10 +3,10 @@
   <h1>Events at UnCubed</h1>
   <br/>
   <h3>Have an event you'd like us to know about?</h3>
-    <button class="button"><a href="/event_login">Click Here</a></button> 
+    <button class="button"><a href="/event_login">Click Here</a></button>
     <br/>
     <% if member? %>
-    <a href="/member_logout" style="float: right">Logout</a>
+      <a href="/member_logout" style="float: right">Logout</a>
     <% end %>
   <hr/>
 
@@ -18,17 +18,17 @@
         <h2><b><%= event[:company] %></b></h2>
             <b><%= event[:title] %></b>
             <br/>
-         Date: <%= event[:date] %> 
+         Date: <%= event[:date] %>
          Time: <%= event[:time] %>
             <br/>
      Location: <%= event[:location] %>
             <br/>
       Details: <%= event[:details] %>
         <% if admin? %>
-        <form action='/<%= event[:id] %>' method='POST' style="float: right">
-          <input type="hidden" name="_method" value="DELETE">
-          <input type='submit' value="DELETE EVENT"/>
-        </form>
+          <form action='/<%= event[:id] %>' method='POST' style="float: right">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type='submit' value="DELETE EVENT"/>
+          </form>
         <% end %>
         <br/>
         <br/>

@@ -13,6 +13,7 @@ gem 'contact'
 gem 'cane'
 gem 'reek'
 gem 'rake'
+gem 'selenium-webdriver'
 
 group :development do
   gem 'shotgun'

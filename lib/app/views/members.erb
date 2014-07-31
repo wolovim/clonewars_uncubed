@@ -3,70 +3,7 @@
 <% if members.empty? %>
   <p>There are no members registered yet.</p>
 <% else %>
-    <table style="width: 60%; border: 1px solid;">
-      <tbody>
-        <tr style="border-bottom: 2px solid black; background-color: #ddd;">
-          <style type="text/css">
-            th {
-              padding: 3px;
-              border: 1px solid;
-            }
-            td {
-              padding: 3px;
-              border: 1px solid;
-              text-align: center;
-            }
-          </style>
-          <th>Company</th>
-          <th>Membership</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Email</th>
-          <th>Join Date</th>
-          <th>ID</th>
-          <% if admin? %>
-            <th>Edit?</th>
-            <th>Remove?</th>
-          <% end %>
-        </tr>
-        <% members_with_types.each do |member| %>
-          <tr>
-            <td><%= member[:company] %></td>
-            <td><%= member[:name] %></td>
-            <td><%= member[:first_name] %></td>
-            <td><%= member[:last_name] %></td>
-            <td><%= member[:email_address] %></td>
-            <td><%= member[:joined_at].to_date if member[:joined_at] %></td>
-            <td><%= member[:id] %></td>
-            <% if admin? %>
-              <td>
-                <form action='/<%= member[:id] %>/edit' method='GET' style="display: inline">
-                  <input type="hidden" name "_method" value="PUT">
-                  <input type="submit" value="√"/>
-                </form>
-              </td>
-              <%= "<td id='del-#{member[:id]}'>" %>
-                <form action='/<%= member[:id] %>' method='POST' style="display: inline">
-                  <input type="hidden" name="_method" value="DELETE">
-                  <input type='submit' value="X"/>
-                </form>
-              </td>
-            <% end %>
-          </tr>
-        <% end %>
-      </tbody>
-    </table>
+  <%= erb :member_table, locals: {members: members, members_with_types: members_with_types} %>
 <% end %>
 <br/>
-<% if admin? %>
-  <form action='/members' method='POST' style='float: left;' id="admin_member_form">
-    <h2>[Input a new member]</h2><br/>
-    <strong>Company: </strong><br><input type='text' name='member[company]'/><br/>
-    <strong>Member Type: </strong><br><input type='text' name='member[membership_type_id]'/><br/>
-    <strong>First Name:</strong><br><input type='text' name='member[first_name]'/><br/>
-    <strong>Last Name: </strong><br><input type='text' name='member[last_name]'/><br/>
-    <strong>Email: </strong><br><input type='text' name='member[email_address]'/><br/>
-    <strong>Phone Number: </strong><br><input type='text' name='member[phone_number]'/><br/></br>
-    <input type='submit' value='Add Member'/>
-  </form>
-<% end %>
+<%= erb :add_member_form, locals: {members: members} %>
