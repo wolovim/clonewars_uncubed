@@ -1,7 +1,6 @@
 <div id="login" style="float: left">
   <h1>Uncubed</h1><br/>
   <h2>Admin Login</h2><br/>
-
   <form name="loginform" id="loginform" action="/login" method="POST">
   	<p>
   		<label for="username">Username<br />
@@ -11,10 +10,7 @@
   		<label for="password">Password<br />
   		<input type="password" name="password" id="user_pass" class="input" value="" size="20" /></label>
   	</p>
-  	<!-- <p class="forgetmenot"><label for="rememberme"><input name="rememberme" type="checkbox" id="rememberme" value="forever"  /> Remember Me</label></p> -->
-
   	<input type="submit" name="wp-submit" id="wp-submit" class="button button-primary button-large" value="Log In" /><br/><br/>
-
   </form>
 
   <script type="text/javascript">
@@ -27,20 +23,10 @@
       }, 200);
     }
 
-  wp_attempt_focus();
-  if(typeof wpOnload=='function')wpOnload();
-</script>
+    wp_attempt_focus();
+    if(typeof wpOnload=='function')wpOnload();
+  </script>
 
   <p id="backtoblog"><a href="/" title="Are you lost?">&larr; Back to Home</a></p>
-
 </div> <!-- #login -->
-
-<!-- <link rel='stylesheet' id='flickr-gallery-css'  href='http://uncubed.johnwilker.com/wp-content/plugins/flickr-gallery/flickr-gallery.css?ver=1.5.2' type='text/css' media='all' />
-<link rel='stylesheet' id='fg-jquery-ui-css'  href='http://uncubed.johnwilker.com/wp-content/plugins/flickr-gallery/tab-theme/jquery-ui-1.7.3.css?ver=1.7.3' type='text/css' media='all' />
-<link rel='stylesheet' id='jquery-flightbox-css'  href='http://uncubed.johnwilker.com/wp-content/plugins/flickr-gallery/flightbox/jquery.flightbox.css?ver=1.5.2' type='text/css' media='all' />
-<link rel='stylesheet' id='flick-css'  href='http://uncubed.johnwilker.com/wp-content/plugins/mailchimp//css/flick/flick.css?ver=3.8.3' type='text/css' media='all' />
-<link rel='stylesheet' id='mailchimpSF_main_css-css'  href='http://www.uncubedspace.com/?mcsf_action=main_css&#038;ver=3.8.3' type='text/css' media='all' />
-
-<script type='text/javascript' src='http://uncubed.johnwilker.com/wp-includes/js/jquery/ui/jquery.ui.widget.min.js?ver=1.10.3'></script>
-<script type='text/javascript' src='http://uncubed.johnwilker.com/wp-includes/js/jquery/ui/jquery.ui.tabs.min.js?ver=1.10.3'></script> -->
 <div class="clear"></div>
